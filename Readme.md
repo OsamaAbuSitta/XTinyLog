@@ -1,4 +1,4 @@
-#XTinyLog
+## XTinyLog
 
 XTinyLog is a simple C# library for logging as html file, configuration less and easy to use.
 
