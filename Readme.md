@@ -28,7 +28,7 @@ namespace XTinyLog.Test
           XLog.Log.Error(new NotImplementedException());
 	 }
 }
-
+```
 
 ## Configuration
 	You can access log configuration by using XLog.Log.Config with contains :
