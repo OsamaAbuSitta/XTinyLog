@@ -6,7 +6,7 @@
     <Company>XTinyLog</Company>
     <Description>XTinyLog is a simple C# library for logging as html file</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageProjectUrl>https://www.newtonsoft.com/json</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/OsamaAbuSitta/XTinyLog</PackageProjectUrl>
     <Version>1.0.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="LICENSE.txt" />
   </ItemGroup>
 
 </Project>
