@@ -21,9 +21,9 @@ using XTinyLog;
 namespace XTinyLog.Test
 {
      static void Main(string[] args) {
-		  XLog.Log.Info("Log Info");
+	  XLog.Log.Info("Log Info");
           XLog.Log.Debug("Log Debug");
-		  XLog.Log.Warn("Log Warning");
+	  XLog.Log.Warn("Log Warning");
           XLog.Log.Error("Log Error");
           XLog.Log.Error(new NotImplementedException());
 	 }
