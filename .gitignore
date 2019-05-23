@@ -1,0 +1,10 @@
+# Don't track content of these folders
+*.suo
+*.user
+packages
+.vs
+TinyLog/bin
+TinyLog/obj
+TestResults
+XTinyLog.Test/bin
+XTinyLog.Test/obj
