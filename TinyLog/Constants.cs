@@ -81,9 +81,9 @@
               </select>
 
               <label class='lbl'> Search</label>
-              <input type = 'text' id='logSearch' onkeyup='drowLogData();' />
+              <input type = 'text' id='logSearch' oninput='drowLogData();' />
 
-              <input type = 'button' id='logSearch' oninput='clearSearch();'  value='Clear' />
+              <input type = 'button' id='logSearch' onclick='clearSearch();'  value='Clear' />
             </div> <hr />";
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
