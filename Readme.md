@@ -32,10 +32,10 @@ namespace XTinyLog.Test
 
 ## Configuration
 You can access log configuration by using XLog.Log.Config with contains :
-- Config.LogDirectory 		: "C:\" 
-- ApplicationName 		: "MM yyyy"
-- MaxFileSize 			: 1,000 Kilo Bytes
-- FileName  			: "dd MM yyyy"
+- Config.LogDirectory 		: default value "C:\" 
+- ApplicationName 		:  default value "MM yyyy"
+- MaxFileSize 			:  default value 1,000 Kilo Bytes
+- FileName  			:  default value "dd MM yyyy.html"
 	
 - Log file path  
 "{Config.LogDirectory}\{Config.ApplicationName}\{fileName}.html"
