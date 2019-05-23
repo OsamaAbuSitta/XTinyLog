@@ -72,4 +72,4 @@ You can access log configuration by using XLog.Log.Config with contains :
 ```
 
 ## Development and Debug
-	XTinyLog fails silent, but you can enable debug mode which throwing any exception out by adding conditional compilation symbol "DEBUG_LOG"	
+XTinyLog fails silent, but you can enable debug mode which throwing any exception out by adding conditional compilation symbol "DEBUG_LOG"	
