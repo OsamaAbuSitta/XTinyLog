@@ -35,7 +35,7 @@ You can access log configuration by using XLog.Log.Config which contains :
 - Config.LogDirectory 		:  default value "C:\" 
 - ApplicationName 		:  default value month date with the following format "MM yyyy"
 - MaxFileSize 			:  default value 1,000 KB
-- FileName  			:  default value "dd MM yyyy.html"
+- FileName  			:  default value date with the following format "dd MM yyyy.html"
 	
 - Log file path  
 "{Config.LogDirectory}\{Config.ApplicationName}\{fileName}.html"
