@@ -1,6 +1,6 @@
 ## XTinyLog
 
-XTinyLog is a simple C# library for logging as html file, configuration less and easy to use.
+XTinyLog is a simple C# library for logging as html file, thread safe, configuration less and easy to use.
 
 XTinyLog dll targeting three main versions net451, netstandard1.3 and netstandard2.0 
 which support all .net framework versions greater than 4.5.1 and all .net standard greater than 1.3 [.NET implementation support](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
