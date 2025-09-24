@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTinyLog", "TinyLog\XTinyLog.csproj", "{6F5A03BF-3BF0-465A-B1B6-64738DDCB912}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTinyLog", "src\XTinyLog\XTinyLog.csproj", "{6F5A03BF-3BF0-465A-B1B6-64738DDCB912}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTinyLog.Test", "XTinyLog.Test\XTinyLog.Test.csproj", "{A53ADF3C-9A0D-48C8-87A8-B1B8B7047644}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTinyLog.Test", "tests\XTinyLog.Tests\XTinyLog.Test.csproj", "{A53ADF3C-9A0D-48C8-87A8-B1B8B7047644}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

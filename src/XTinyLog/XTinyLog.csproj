@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Project-specific properties -->
+    <AssemblyName>XTinyLog</AssemblyName>
+    <RootNamespace>XTinyLog</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
+    <!-- Localization -->
+    <NeutralLanguage>en-US</NeutralLanguage>
+    
+    <!-- Package-specific metadata (inherits common metadata from Directory.Build.props) -->
+    <PackageId>XTinyLog</PackageId>
+    <Title>XTinyLog - Modern HTML Logging Library</Title>
+  </PropertyGroup>
+
+  <!-- Framework-specific configurations -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net461'">
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Project-specific package references -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
+    <!-- Add any framework-specific dependencies here if needed -->
+  </ItemGroup>
+
+</Project>

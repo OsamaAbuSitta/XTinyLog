@@ -1,17 +1,39 @@
 ﻿namespace XTinyLog
 {
+    /// <summary>
+    /// Defines the available log levels for XTinyLog.
+    /// </summary>
     internal enum LogTypeEnum
     {
+        /// <summary>
+        /// Informational messages that highlight the progress of the application.
+        /// </summary>
         Info,
+
+        /// <summary>
+        /// Warning messages that indicate potentially harmful situations.
+        /// </summary>
         Warning,
+
+        /// <summary>
+        /// Debug messages that provide detailed information for diagnosing problems.
+        /// </summary>
         Debug,
-        Error
+
+        /// <summary>
+        /// Error messages that indicate error events but allow the application to continue running.
+        /// </summary>
+        Error,
     }
 
+    /// <summary>
+    /// Contains HTML template constants and styling used for generating log output files.
+    /// </summary>
     internal class Constants
     {
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// CSS styles for the HTML log output including responsive design and theme support.
+        /// </summary>
         public const string StyleTag =
                 @"<style>
             html, body {
@@ -60,7 +82,9 @@
             }
            </style>";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// HTML template for the search and filter controls section.
+        /// </summary>
         public const string SearchDivTag =
             @"<div>
                 <h3> File Date : 12/78/789</h3>
@@ -86,7 +110,9 @@
               <input type = 'button' id='logSearch' onclick='clearSearch();'  value='Clear' />
             </div> <hr />";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// JavaScript code for interactive log filtering, searching, and display functionality.
+        /// </summary>
         public const string BeginScriptTag =
             @"<script>
                  drowLogData();
@@ -142,23 +168,35 @@
                             {
                        ";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Closing HTML tags for the JavaScript section and document.
+        /// </summary>
         public const string EngTags = "   ]; } </script>  </body></html>";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Opening HTML document structure with DOCTYPE and head section.
+        /// </summary>
         public const string BeginLogHtmlFile = 
             "<!DOCTYPE html><html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\"> \n <head>";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// HTML meta tag for UTF-8 character encoding.
+        /// </summary>
         public const string MetaTag = " <meta charset=\"utf-8\" />";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// HTML title tag template with placeholder for the log file name.
+        /// </summary>
         public const string TitleTag = "<title>{0}</title>";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// HTML tag to close the head section and open the body section.
+        /// </summary>
         public const string BeginBodyTag = "</head> <body>";
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// HTML container div element where log entries will be dynamically inserted.
+        /// </summary>
         public const string ContainerDivTag = "<div id='container'> </div>";
     }
 }
