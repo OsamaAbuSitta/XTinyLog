@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="XTinyLog Security Rules" Description="Security-focused code analysis rules for XTinyLog project" ToolsVersion="16.0">
+  
+  <!-- Include base ruleset -->
+  <Include Path="CodeAnalysis.ruleset" Action="Default" />
+  
+  <!-- Security Code Scan Rules -->
+  <Rules AnalyzerId="SecurityCodeScan.VS2019" RuleNamespace="SecurityCodeScan.VS2019">
+    <Rule Id="SCS0001" Action="Warning" /> <!-- Command injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0002" Action="Warning" /> <!-- SQL injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0003" Action="Warning" /> <!-- XPath injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0004" Action="Warning" /> <!-- Certificate Validation has been disabled -->
+    <Rule Id="SCS0005" Action="Warning" /> <!-- Weak random number generator -->
+    <Rule Id="SCS0006" Action="Warning" /> <!-- Weak hashing function -->
+    <Rule Id="SCS0007" Action="Warning" /> <!-- XML eXternal Entity Injection (XXE) -->
+    <Rule Id="SCS0008" Action="Warning" /> <!-- Cookie without Secure flag -->
+    <Rule Id="SCS0009" Action="Warning" /> <!-- Cookie without HttpOnly flag -->
+    <Rule Id="SCS0010" Action="Warning" /> <!-- Weak cipher algorithm -->
+    <Rule Id="SCS0011" Action="Warning" /> <!-- CBC padding oracle -->
+    <Rule Id="SCS0012" Action="Warning" /> <!-- Controller method is vulnerable to CSRF -->
+    <Rule Id="SCS0013" Action="Warning" /> <!-- Potential directory traversal -->
+    <Rule Id="SCS0014" Action="Warning" /> <!-- Potentially hardcoded password -->
+    <Rule Id="SCS0015" Action="Warning" /> <!-- Hardcoded password in connection string -->
+    <Rule Id="SCS0016" Action="Warning" /> <!-- Controller method is vulnerable to CSRF -->
+    <Rule Id="SCS0017" Action="Warning" /> <!-- Request validation is enabled only for pages -->
+    <Rule Id="SCS0018" Action="Warning" /> <!-- Path traversal: injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0019" Action="Warning" /> <!-- OutputCache conflict: {0} -->
+    <Rule Id="SCS0020" Action="Warning" /> <!-- Weak cipher mode -->
+    <Rule Id="SCS0021" Action="Warning" /> <!-- Request validation disabled -->
+    <Rule Id="SCS0022" Action="Warning" /> <!-- Event validation disabled -->
+    <Rule Id="SCS0023" Action="Warning" /> <!-- View state not encrypted -->
+    <Rule Id="SCS0024" Action="Warning" /> <!-- View state MAC disabled -->
+    <Rule Id="SCS0025" Action="Warning" /> <!-- Weak random number generator -->
+    <Rule Id="SCS0026" Action="Warning" /> <!-- LDAP injection: injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0027" Action="Warning" /> <!-- Open redirect: possibly unvalidated input in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0028" Action="Warning" /> <!-- Unsafe deserialization possible from {0} argument passed to '{1}' method -->
+    <Rule Id="SCS0029" Action="Warning" /> <!-- Potential XSS vulnerability -->
+    <Rule Id="SCS0030" Action="Warning" /> <!-- Request validation disabled in base class -->
+    <Rule Id="SCS0031" Action="Warning" /> <!-- LDAP injection: DN injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0032" Action="Warning" /> <!-- Path traversal: injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0033" Action="Warning" /> <!-- LDAP injection: filter injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0034" Action="Warning" /> <!-- Path traversal: injection possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0035" Action="Warning" /> <!-- SQL injection: possible in {0} argument passed to '{1}' -->
+    <Rule Id="SCS0036" Action="Warning" /> <!-- SQL injection: Entity Framework -->
+  </Rules>
+  
+  <!-- SonarAnalyzer Security Rules -->
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+    <!-- Security Hotspots -->
+    <Rule Id="S2068" Action="Warning" /> <!-- Credentials should not be hard-coded -->
+    <Rule Id="S2245" Action="Warning" /> <!-- Using pseudorandom number generators (PRNGs) is security-sensitive -->
+    <Rule Id="S2255" Action="Warning" /> <!-- Using cookies is security-sensitive -->
+    <Rule Id="S2257" Action="Warning" /> <!-- Using non-standard cryptographic algorithms is security-sensitive -->
+    <Rule Id="S2259" Action="Warning" /> <!-- Using null ciphers is security-sensitive -->
+    <Rule Id="S4423" Action="Warning" /> <!-- Weak SSL/TLS protocols should not be used -->
+    <Rule Id="S4426" Action="Warning" /> <!-- Cryptographic keys should be robust -->
+    <Rule Id="S4432" Action="Warning" /> <!-- AES encryption algorithm should be used with secure mode -->
+    <Rule Id="S4433" Action="Warning" /> <!-- LDAP connections should be authenticated -->
+    <Rule Id="S4434" Action="Warning" /> <!-- Weak hashing algorithms should not be used -->
+    <Rule Id="S4502" Action="Warning" /> <!-- Disabling CSRF protections is security-sensitive -->
+    <Rule Id="S4507" Action="Warning" /> <!-- Delivering code in production with debug features activated is security-sensitive -->
+    <Rule Id="S4508" Action="Warning" /> <!-- Deserializing objects without performing data validation is security-sensitive -->
+    <Rule Id="S4524" Action="Warning" /> <!-- Switching off Spring Security's CSRF protection is security-sensitive -->
+    <Rule Id="S4525" Action="Warning" /> <!-- Using regular expressions is security-sensitive -->
+    <Rule Id="S4527" Action="Warning" /> <!-- Accessing the file system is security-sensitive -->
+    <Rule Id="S4529" Action="Warning" /> <!-- Exposing HTTP endpoints is security-sensitive -->
+    <Rule Id="S4531" Action="Warning" /> <!-- Hashing data is security-sensitive -->
+    <Rule Id="S4533" Action="Warning" /> <!-- Information logging is security-sensitive -->
+    <Rule Id="S4534" Action="Warning" /> <!-- Controlling permissions is security-sensitive -->
+    <Rule Id="S4535" Action="Warning" /> <!-- Using command line arguments is security-sensitive -->
+    <Rule Id="S4539" Action="Warning" /> <!-- Local variables should not shadow class fields -->
+    <Rule Id="S4542" Action="Warning" /> <!-- Using environment variables is security-sensitive -->
+    <Rule Id="S4543" Action="Warning" /> <!-- Constructors should not call overridable methods -->
+    <Rule Id="S4545" Action="Warning" /> <!-- Debug features should not be enabled in production code -->
+    <Rule Id="S4564" Action="Warning" /> <!-- Hyperlinks should not be vulnerable to tabnabbing -->
+    <Rule Id="S4571" Action="Warning" /> <!-- Dynamically executing code is security-sensitive -->
+    <Rule Id="S4784" Action="Warning" /> <!-- Using regular expressions is security-sensitive -->
+    <Rule Id="S4787" Action="Warning" /> <!-- Encrypting data is security-sensitive -->
+    <Rule Id="S4790" Action="Warning" /> <!-- Using weak hashing algorithms is security-sensitive -->
+    <Rule Id="S4792" Action="Warning" /> <!-- Configuring loggers is security-sensitive -->
+    <Rule Id="S4817" Action="Warning" /> <!-- Executing XPath expressions is security-sensitive -->
+    <Rule Id="S4818" Action="Warning" /> <!-- Using sockets is security-sensitive -->
+    <Rule Id="S4823" Action="Warning" /> <!-- Using command line arguments is security-sensitive -->
+    <Rule Id="S4829" Action="Warning" /> <!-- Reading the Standard Input is security-sensitive -->
+    <Rule Id="S4830" Action="Warning" /> <!-- Server certificates should be verified during SSL/TLS connections -->
+    <Rule Id="S5042" Action="Warning" /> <!-- Expanding archive files without controlling resource consumption is security-sensitive -->
+    <Rule Id="S5122" Action="Warning" /> <!-- Having a permissive Cross-Origin Resource Sharing policy is security-sensitive -->
+    <Rule Id="S5131" Action="Warning" /> <!-- Endpoints should not be vulnerable to reflected cross-site scripting (XSS) attacks -->
+    <Rule Id="S5144" Action="Warning" /> <!-- Server-side requests should not be vulnerable to forging attacks -->
+    <Rule Id="S5145" Action="Warning" /> <!-- Logging should not be vulnerable to injection attacks -->
+    <Rule Id="S5146" Action="Warning" /> <!-- Beginner developers should not use "Open redirect" -->
+    <Rule Id="S5147" Action="Warning" /> <!-- Logging should not be vulnerable to injection attacks -->
+    <Rule Id="S5332" Action="Warning" /> <!-- Using clear-text protocols is security-sensitive -->
+    <Rule Id="S5443" Action="Warning" /> <!-- Operating systems should be supported and up-to-date -->
+    <Rule Id="S5445" Action="Warning" /> <!-- Insecure temporary file creation methods should not be used -->
+    <Rule Id="S5547" Action="Warning" /> <!-- Cipher algorithms should be robust -->
+    <Rule Id="S5659" Action="Warning" /> <!-- JWT should be signed and verified -->
+    <Rule Id="S5766" Action="Warning" /> <!-- Deserializing objects without performing data validation is security-sensitive -->
+    <Rule Id="S5773" Action="Warning" /> <!-- Types allowed to be deserialized should be restricted -->
+    <Rule Id="S6377" Action="Warning" /> <!-- XML signatures should be verified securely -->
+    <Rule Id="S6378" Action="Warning" /> <!-- DiagnosticAnalyzer should not use static fields -->
+  </Rules>
+  
+</RuleSet>

@@ -4,16 +4,14 @@ using System.IO;
 
 namespace XTinyLog
 {
-    /// <summary>
-    /// Provides validation for log configuration settings
-    /// </summary>
+    /// <summary>/// Provides validation for log configuration settings
+    /// .</summary>
     internal static class ConfigurationValidator
     {
-        /// <summary>
-        /// Validates the provided log configuration and returns validation results
-        /// </summary>
-        /// <param name="config">The configuration to validate</param>
-        /// <returns>Validation result containing any errors found</returns>
+        /// <summary>/// Validates the provided log configuration and returns validation results
+        /// .</summary>
+        /// <param name="The configuration to validate">The configuration to validate.</param>
+        /// <returns>Validation result containing any errors found.</returns>
         public static ValidationResult Validate(ILogConfiguration config)
         {
             var result = new ValidationResult();
@@ -105,7 +103,7 @@ namespace XTinyLog
             try
             {
                 var fileNameValue = fileName.Invoke();
-                
+
                 if (string.IsNullOrWhiteSpace(fileNameValue))
                 {
                     result.AddError("FileName function cannot return null or empty string");
@@ -148,36 +146,31 @@ namespace XTinyLog
         }
     }
 
-    /// <summary>
-    /// Contains the results of configuration validation
-    /// </summary>
+    /// <summary>/// Contains the results of configuration validation
+    /// .</summary>
     public class ValidationResult
     {
         private readonly List<string> _errors = new List<string>();
 
-        /// <summary>
-        /// Gets a value indicating whether the validation passed without errors
-        /// </summary>
+        /// <summary>/// Gets a value indicating whether the validation passed without errors
+        /// .</summary>
         public bool IsValid => _errors.Count == 0;
 
-        /// <summary>
-        /// Gets the collection of validation errors
-        /// </summary>
+        /// <summary>/// Gets the collection of validation errors
+        /// .</summary>
         public IReadOnlyList<string> Errors => _errors.AsReadOnly();
 
-        /// <summary>
-        /// Adds an error to the validation result
-        /// </summary>
-        /// <param name="error">The error message to add</param>
+        /// <summary>/// Adds an error to the validation result
+        /// .</summary>
+        /// <param name="The error message to add">The error message to add.</param>
         internal void AddError(string error)
         {
             _errors.Add(error);
         }
 
-        /// <summary>
-        /// Gets a formatted string containing all validation errors
-        /// </summary>
-        /// <returns>A string with all errors, or empty string if no errors</returns>
+        /// <summary>/// Gets a formatted string containing all validation errors
+        /// .</summary>
+        /// <returns>A string with all errors, or empty string if no errors.</returns>
         public string GetErrorsAsString()
         {
             return string.Join(Environment.NewLine, _errors);

@@ -4,21 +4,21 @@ using System.IO;
 
 namespace XTinyLog
 {
-    /// <summary>
-    /// Provides internal error logging for XTinyLog without causing recursion.
-    /// This logger writes to the Windows Event Log or console in debug mode.
-    /// </summary>
+    /// <summary>/// Provides internal error logging for XTinyLog without causing recursion.
+    /// This logger writes to the Windows Event Log (on .NET Framework) or console/file fallback.
+    /// .</summary>
     internal static class InternalLogger
     {
+#if NET461_OR_GREATER || NETFRAMEWORK
         private const string EventSourceName = "XTinyLog";
         private const string LogName = "Application";
         private static readonly object LockObject = new object();
         private static bool _eventSourceChecked = false;
         private static bool _eventSourceAvailable = false;
+#endif
 
-        /// <summary>
-        /// Logs an internal error without causing recursion in the main logging system.
-        /// </summary>
+        /// <summary>/// Logs an internal error without causing recursion in the main logging system.
+        /// .</summary>
         /// <param name="exception">The exception to log.</param>
         /// <param name="context">Additional context information about where the error occurred.</param>
         public static void LogInternalError(Exception exception, string context)
@@ -30,11 +30,13 @@ namespace XTinyLog
 
             try
             {
-                // Try to write to Event Log first (Windows only)
+#if NET461_OR_GREATER || NETFRAMEWORK
+                // Try to write to Event Log first (Windows/.NET Framework only)
                 if (TryWriteToEventLog(message, detailedMessage))
                 {
                     return;
                 }
+#endif
 
                 // Fallback to console in debug mode
                 WriteToConsole(detailedMessage);
@@ -49,9 +51,8 @@ namespace XTinyLog
             }
         }
 
-        /// <summary>
-        /// Logs an internal warning message.
-        /// </summary>
+        /// <summary>/// Logs an internal warning message.
+        /// .</summary>
         /// <param name="message">The warning message to log.</param>
         /// <param name="context">Additional context information.</param>
         public static void LogInternalWarning(string message, string context)
@@ -60,10 +61,12 @@ namespace XTinyLog
 
             try
             {
+#if NET461_OR_GREATER || NETFRAMEWORK
                 if (TryWriteToEventLog(fullMessage, fullMessage, EventLogEntryType.Warning))
                 {
                     return;
                 }
+#endif
 
                 WriteToConsole($"WARNING: {fullMessage}");
                 TryWriteToFallbackFile($"WARNING: {fullMessage}");
@@ -74,6 +77,33 @@ namespace XTinyLog
             }
         }
 
+        /// <summary>/// Logs an internal informational message.
+        /// .</summary>
+        /// <param name="message">The informational message to log.</param>
+        /// <param name="context">Additional context information.</param>
+        public static void LogInternalInfo(string message, string context)
+        {
+            var fullMessage = $"XTinyLog Info in {context}: {message}";
+
+            try
+            {
+#if NET461_OR_GREATER || NETFRAMEWORK
+                if (TryWriteToEventLog(fullMessage, fullMessage, EventLogEntryType.Information))
+                {
+                    return;
+                }
+#endif
+
+                WriteToConsole($"INFO: {fullMessage}");
+                TryWriteToFallbackFile($"INFO: {fullMessage}");
+            }
+            catch
+            {
+                // Suppress any errors in internal logging
+            }
+        }
+
+#if NET461_OR_GREATER || NETFRAMEWORK
         private static bool TryWriteToEventLog(string message, string detailedMessage, EventLogEntryType entryType = EventLogEntryType.Error)
         {
             try
@@ -136,6 +166,7 @@ namespace XTinyLog
                 return _eventSourceAvailable;
             }
         }
+#endif
 
         private static void WriteToConsole(string message)
         {

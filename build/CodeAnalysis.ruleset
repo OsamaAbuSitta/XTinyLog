@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="XTinyLog Code Analysis Rules" Description="Custom code analysis rules for XTinyLog project" ToolsVersion="16.0">
+  
+  <!-- Include all Microsoft.CodeAnalysis.NetAnalyzers rules -->
+  <Include Path="microsoft.codeanalysis.netanalyzers.ruleset" Action="Default" />
+  
+  <!-- StyleCop.Analyzers Rules -->
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    
+    <!-- Documentation Rules -->
+    <Rule Id="SA1600" Action="Warning" /> <!-- Elements should be documented -->
+    <Rule Id="SA1601" Action="Warning" /> <!-- Partial elements should be documented -->
+    <Rule Id="SA1602" Action="Warning" /> <!-- Enumeration items should be documented -->
+    <Rule Id="SA1633" Action="None" />    <!-- File should have header (disabled for this project) -->
+    <Rule Id="SA1652" Action="Warning" /> <!-- Enable XML documentation output -->
+    
+    <!-- Spacing Rules -->
+    <Rule Id="SA1000" Action="Warning" /> <!-- Keywords should be spaced correctly -->
+    <Rule Id="SA1001" Action="Warning" /> <!-- Commas should be spaced correctly -->
+    <Rule Id="SA1002" Action="Warning" /> <!-- Semicolons should be spaced correctly -->
+    <Rule Id="SA1003" Action="Warning" /> <!-- Symbols should be spaced correctly -->
+    <Rule Id="SA1008" Action="Warning" /> <!-- Opening parenthesis should be spaced correctly -->
+    <Rule Id="SA1009" Action="Warning" /> <!-- Closing parenthesis should be spaced correctly -->
+    <Rule Id="SA1010" Action="Warning" /> <!-- Opening square brackets should be spaced correctly -->
+    <Rule Id="SA1011" Action="Warning" /> <!-- Closing square brackets should be spaced correctly -->
+    <Rule Id="SA1012" Action="Warning" /> <!-- Opening braces should be spaced correctly -->
+    <Rule Id="SA1013" Action="Warning" /> <!-- Closing braces should be spaced correctly -->
+    
+    <!-- Readability Rules -->
+    <Rule Id="SA1101" Action="None" />    <!-- Prefix local calls with this (disabled) -->
+    <Rule Id="SA1116" Action="Warning" /> <!-- Split parameters should start on line after declaration -->
+    <Rule Id="SA1117" Action="Warning" /> <!-- Parameters should be on same line or separate lines -->
+    <Rule Id="SA1118" Action="Warning" /> <!-- Parameter should not span multiple lines -->
+    <Rule Id="SA1127" Action="Warning" /> <!-- Generic type constraints should be on their own line -->
+    <Rule Id="SA1128" Action="Warning" /> <!-- Put constructor initializers on their own line -->
+    <Rule Id="SA1130" Action="Warning" /> <!-- Use lambda syntax -->
+    <Rule Id="SA1131" Action="Warning" /> <!-- Use readable conditions -->
+    <Rule Id="SA1133" Action="Warning" /> <!-- Do not combine attributes -->
+    <Rule Id="SA1134" Action="Warning" /> <!-- Attributes should not share line -->
+    <Rule Id="SA1135" Action="Warning" /> <!-- Using directives should be qualified -->
+    <Rule Id="SA1136" Action="Warning" /> <!-- Enum values should be on separate lines -->
+    <Rule Id="SA1137" Action="Warning" /> <!-- Elements should have the same indentation -->
+    
+    <!-- Ordering Rules -->
+    <Rule Id="SA1200" Action="Warning" /> <!-- Using directives should be placed correctly -->
+    <Rule Id="SA1201" Action="Warning" /> <!-- Elements should appear in the correct order -->
+    <Rule Id="SA1202" Action="Warning" /> <!-- Elements should be ordered by access -->
+    <Rule Id="SA1203" Action="Warning" /> <!-- Constants should appear before fields -->
+    <Rule Id="SA1204" Action="Warning" /> <!-- Static elements should appear before instance elements -->
+    <Rule Id="SA1208" Action="Warning" /> <!-- System using directives should be first -->
+    <Rule Id="SA1210" Action="Warning" /> <!-- Using directives should be ordered alphabetically -->
+    <Rule Id="SA1211" Action="Warning" /> <!-- Using alias directives should be ordered alphabetically -->
+    <Rule Id="SA1216" Action="Warning" /> <!-- Using static directives should be placed at the correct location -->
+    <Rule Id="SA1217" Action="Warning" /> <!-- Using static directives should be ordered alphabetically -->
+    
+    <!-- Naming Rules -->
+    <Rule Id="SA1300" Action="Warning" /> <!-- Element should begin with upper-case letter -->
+    <Rule Id="SA1302" Action="Warning" /> <!-- Interface names should begin with I -->
+    <Rule Id="SA1303" Action="Warning" /> <!-- Const field names should begin with upper-case letter -->
+    <Rule Id="SA1304" Action="Warning" /> <!-- Non-private readonly fields should begin with upper-case letter -->
+    <Rule Id="SA1306" Action="Warning" /> <!-- Field names should begin with lower-case letter -->
+    <Rule Id="SA1307" Action="Warning" /> <!-- Accessible fields should begin with upper-case letter -->
+    <Rule Id="SA1308" Action="Warning" /> <!-- Variable names should not be prefixed -->
+    <Rule Id="SA1309" Action="None" />    <!-- Field names should not begin with underscore (disabled) -->
+    <Rule Id="SA1310" Action="Warning" /> <!-- Field names should not contain underscore -->
+    <Rule Id="SA1311" Action="Warning" /> <!-- Static readonly fields should begin with upper-case letter -->
+    <Rule Id="SA1312" Action="Warning" /> <!-- Variable names should begin with lower-case letter -->
+    <Rule Id="SA1313" Action="Warning" /> <!-- Parameter names should begin with lower-case letter -->
+    
+    <!-- Maintainability Rules -->
+    <Rule Id="SA1400" Action="Warning" /> <!-- Access modifier should be declared -->
+    <Rule Id="SA1401" Action="Warning" /> <!-- Fields should be private -->
+    <Rule Id="SA1402" Action="Warning" /> <!-- File may only contain a single type -->
+    <Rule Id="SA1403" Action="Warning" /> <!-- File may only contain a single namespace -->
+    <Rule Id="SA1404" Action="Warning" /> <!-- Code analysis suppression should have justification -->
+    <Rule Id="SA1405" Action="Warning" /> <!-- Debug.Assert should provide message text -->
+    <Rule Id="SA1406" Action="Warning" /> <!-- Debug.Fail should provide message text -->
+    <Rule Id="SA1407" Action="Warning" /> <!-- Arithmetic expressions should declare precedence -->
+    <Rule Id="SA1408" Action="Warning" /> <!-- Conditional expressions should declare precedence -->
+    <Rule Id="SA1410" Action="Warning" /> <!-- Remove delegate parens when possible -->
+    <Rule Id="SA1411" Action="Warning" /> <!-- Attribute constructor should not use unnecessary parenthesis -->
+    <Rule Id="SA1413" Action="Warning" /> <!-- Use trailing comma in multi-line initializers -->
+    
+    <!-- Layout Rules -->
+    <Rule Id="SA1500" Action="Warning" /> <!-- Braces for multi-line statements should not share line -->
+    <Rule Id="SA1501" Action="Warning" /> <!-- Statement should not be on a single line -->
+    <Rule Id="SA1502" Action="Warning" /> <!-- Element should not be on a single line -->
+    <Rule Id="SA1503" Action="Warning" /> <!-- Braces should not be omitted -->
+    <Rule Id="SA1504" Action="Warning" /> <!-- All accessors should be single-line or multi-line -->
+    <Rule Id="SA1505" Action="Warning" /> <!-- Opening braces should not be followed by blank line -->
+    <Rule Id="SA1506" Action="Warning" /> <!-- Element documentation headers should not be followed by blank line -->
+    <Rule Id="SA1507" Action="Warning" /> <!-- Code should not contain multiple blank lines in a row -->
+    <Rule Id="SA1508" Action="Warning" /> <!-- Closing braces should not be preceded by blank line -->
+    <Rule Id="SA1509" Action="Warning" /> <!-- Opening braces should not be preceded by blank line -->
+    <Rule Id="SA1510" Action="Warning" /> <!-- Chained statement blocks should not be preceded by blank line -->
+    <Rule Id="SA1511" Action="Warning" /> <!-- While-do footer should not be preceded by blank line -->
+    <Rule Id="SA1512" Action="Warning" /> <!-- Single-line comments should not be followed by blank line -->
+    <Rule Id="SA1513" Action="Warning" /> <!-- Closing brace should be followed by blank line -->
+    <Rule Id="SA1514" Action="Warning" /> <!-- Element documentation header should be preceded by blank line -->
+    <Rule Id="SA1515" Action="Warning" /> <!-- Single-line comment should be preceded by blank line -->
+    <Rule Id="SA1516" Action="Warning" /> <!-- Elements should be separated by blank line -->
+    <Rule Id="SA1517" Action="Warning" /> <!-- Code should not contain blank lines at start of file -->
+    <Rule Id="SA1518" Action="Warning" /> <!-- Use line endings correctly at end of file -->
+    <Rule Id="SA1519" Action="Warning" /> <!-- Braces should not be omitted from multi-line child statement -->
+    <Rule Id="SA1520" Action="Warning" /> <!-- Use braces consistently -->
+  </Rules>
+  
+  <!-- Microsoft.CodeAnalysis.NetAnalyzers Rules -->
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.NetAnalyzers" RuleNamespace="Microsoft.CodeAnalysis.NetAnalyzers">
+    
+    <!-- Design Rules -->
+    <Rule Id="CA1000" Action="Warning" /> <!-- Do not declare static members on generic types -->
+    <Rule Id="CA1001" Action="Warning" /> <!-- Types that own disposable fields should be disposable -->
+    <Rule Id="CA1002" Action="Warning" /> <!-- Do not expose generic lists -->
+    <Rule Id="CA1003" Action="Warning" /> <!-- Use generic event handler instances -->
+    <Rule Id="CA1005" Action="Warning" /> <!-- Avoid excessive parameters on generic types -->
+    <Rule Id="CA1008" Action="Warning" /> <!-- Enums should have zero value -->
+    <Rule Id="CA1010" Action="Warning" /> <!-- Collections should implement generic interface -->
+    <Rule Id="CA1012" Action="Warning" /> <!-- Abstract types should not have constructors -->
+    <Rule Id="CA1014" Action="Warning" /> <!-- Mark assemblies with CLSCompliant -->
+    <Rule Id="CA1016" Action="Warning" /> <!-- Mark assemblies with assembly version -->
+    <Rule Id="CA1017" Action="Warning" /> <!-- Mark assemblies with ComVisible -->
+    <Rule Id="CA1018" Action="Warning" /> <!-- Mark attributes with AttributeUsageAttribute -->
+    <Rule Id="CA1019" Action="Warning" /> <!-- Define accessors for attribute arguments -->
+    <Rule Id="CA1021" Action="Warning" /> <!-- Avoid out parameters -->
+    <Rule Id="CA1024" Action="Warning" /> <!-- Use properties where appropriate -->
+    <Rule Id="CA1027" Action="Warning" /> <!-- Mark enums with FlagsAttribute -->
+    <Rule Id="CA1028" Action="Warning" /> <!-- Enum Storage should be Int32 -->
+    <Rule Id="CA1030" Action="Warning" /> <!-- Use events where appropriate -->
+    <Rule Id="CA1031" Action="Info" />    <!-- Do not catch general exception types (info level) -->
+    <Rule Id="CA1032" Action="Warning" /> <!-- Implement standard exception constructors -->
+    <Rule Id="CA1033" Action="Warning" /> <!-- Interface methods should be callable by child types -->
+    <Rule Id="CA1034" Action="Warning" /> <!-- Nested types should not be visible -->
+    <Rule Id="CA1036" Action="Warning" /> <!-- Override methods on comparable types -->
+    <Rule Id="CA1040" Action="Warning" /> <!-- Avoid empty interfaces -->
+    <Rule Id="CA1041" Action="Warning" /> <!-- Provide ObsoleteAttribute message -->
+    <Rule Id="CA1043" Action="Warning" /> <!-- Use Integral Or String Argument For Indexers -->
+    <Rule Id="CA1044" Action="Warning" /> <!-- Properties should not be write only -->
+    <Rule Id="CA1045" Action="Warning" /> <!-- Do not pass types by reference -->
+    <Rule Id="CA1046" Action="Warning" /> <!-- Do not overload equality operator on reference types -->
+    <Rule Id="CA1047" Action="Warning" /> <!-- Do not declare protected member in sealed type -->
+    <Rule Id="CA1050" Action="Warning" /> <!-- Declare types in namespaces -->
+    <Rule Id="CA1051" Action="Warning" /> <!-- Do not declare visible instance fields -->
+    <Rule Id="CA1052" Action="Warning" /> <!-- Static holder types should be Static or NotInheritable -->
+    <Rule Id="CA1054" Action="Warning" /> <!-- Uri parameters should not be strings -->
+    <Rule Id="CA1055" Action="Warning" /> <!-- Uri return values should not be strings -->
+    <Rule Id="CA1056" Action="Warning" /> <!-- Uri properties should not be strings -->
+    <Rule Id="CA1058" Action="Warning" /> <!-- Types should not extend certain base types -->
+    <Rule Id="CA1060" Action="Warning" /> <!-- Move pinvokes to native methods class -->
+    <Rule Id="CA1061" Action="Warning" /> <!-- Do not hide base class methods -->
+    <Rule Id="CA1062" Action="Info" />    <!-- Validate arguments of public methods (info level) -->
+    <Rule Id="CA1063" Action="Warning" /> <!-- Implement IDisposable Correctly -->
+    <Rule Id="CA1064" Action="Warning" /> <!-- Exceptions should be public -->
+    <Rule Id="CA1065" Action="Warning" /> <!-- Do not raise exceptions in unexpected locations -->
+    <Rule Id="CA1066" Action="Warning" /> <!-- Type {0} should implement IEquatable<T> because it overrides Equals -->
+    <Rule Id="CA1067" Action="Warning" /> <!-- Override Object.Equals(object) when implementing IEquatable<T> -->
+    <Rule Id="CA1068" Action="Warning" /> <!-- CancellationToken parameters must come last -->
+    <Rule Id="CA1069" Action="Warning" /> <!-- Enums values should not be duplicated -->
+    <Rule Id="CA1070" Action="Warning" /> <!-- Do not declare event fields as virtual -->
+    
+    <!-- Globalization Rules -->
+    <Rule Id="CA1303" Action="None" />    <!-- Do not pass literals as localized parameters (disabled) -->
+    <Rule Id="CA1304" Action="Warning" /> <!-- Specify CultureInfo -->
+    <Rule Id="CA1305" Action="Warning" /> <!-- Specify IFormatProvider -->
+    <Rule Id="CA1307" Action="Warning" /> <!-- Specify StringComparison -->
+    <Rule Id="CA1308" Action="Warning" /> <!-- Normalize strings to uppercase -->
+    <Rule Id="CA1309" Action="Warning" /> <!-- Use ordinal stringcomparison -->
+    <Rule Id="CA1310" Action="Warning" /> <!-- Specify StringComparison for correctness -->
+    
+    <!-- Performance Rules -->
+    <Rule Id="CA1802" Action="Warning" /> <!-- Use literals where appropriate -->
+    <Rule Id="CA1805" Action="Warning" /> <!-- Do not initialize unnecessarily -->
+    <Rule Id="CA1806" Action="Warning" /> <!-- Do not ignore method results -->
+    <Rule Id="CA1810" Action="Warning" /> <!-- Initialize reference type static fields inline -->
+    <Rule Id="CA1812" Action="Warning" /> <!-- Avoid uninstantiated internal classes -->
+    <Rule Id="CA1813" Action="Warning" /> <!-- Avoid unsealed attributes -->
+    <Rule Id="CA1814" Action="Warning" /> <!-- Prefer jagged arrays over multidimensional -->
+    <Rule Id="CA1815" Action="Warning" /> <!-- Override equals and operator equals on value types -->
+    <Rule Id="CA1816" Action="Warning" /> <!-- Dispose methods should call SuppressFinalize -->
+    <Rule Id="CA1819" Action="Warning" /> <!-- Properties should not return arrays -->
+    <Rule Id="CA1820" Action="Warning" /> <!-- Test for empty strings using string length -->
+    <Rule Id="CA1821" Action="Warning" /> <!-- Remove empty Finalizers -->
+    <Rule Id="CA1822" Action="Warning" /> <!-- Mark members as static -->
+    <Rule Id="CA1823" Action="Warning" /> <!-- Avoid unused private fields -->
+    <Rule Id="CA1824" Action="Warning" /> <!-- Mark assemblies with NeutralResourcesLanguageAttribute -->
+    <Rule Id="CA1825" Action="Warning" /> <!-- Avoid zero-length array allocations -->
+    <Rule Id="CA1826" Action="Warning" /> <!-- Do not use Count() or LongCount() when Any() can be used -->
+    <Rule Id="CA1827" Action="Warning" /> <!-- Do not use Count() or LongCount() when Any() can be used -->
+    <Rule Id="CA1828" Action="Warning" /> <!-- Do not use CountAsync() or LongCountAsync() when AnyAsync() can be used -->
+    <Rule Id="CA1829" Action="Warning" /> <!-- Use Length/Count property instead of Count() when available -->
+    <Rule Id="CA1830" Action="Warning" /> <!-- Prefer strongly-typed Append and Insert method overloads on StringBuilder -->
+    <Rule Id="CA1831" Action="Warning" /> <!-- Use AsSpan or AsMemory instead of Range-based indexers when appropriate -->
+    <Rule Id="CA1832" Action="Warning" /> <!-- Use AsSpan or AsMemory instead of Range-based indexers when appropriate -->
+    <Rule Id="CA1833" Action="Warning" /> <!-- Use AsSpan or AsMemory instead of Range-based indexers when appropriate -->
+    <Rule Id="CA1834" Action="Warning" /> <!-- Consider using 'StringBuilder.Append(char)' when applicable -->
+    <Rule Id="CA1835" Action="Warning" /> <!-- Prefer the 'Memory'-based overloads for 'ReadAsync' and 'WriteAsync' -->
+    <Rule Id="CA1836" Action="Warning" /> <!-- Prefer IsEmpty over Count -->
+    <Rule Id="CA1837" Action="Warning" /> <!-- Use 'Environment.ProcessId' -->
+    <Rule Id="CA1838" Action="Warning" /> <!-- Avoid 'StringBuilder' parameters for P/Invokes -->
+    <Rule Id="CA1839" Action="Warning" /> <!-- Use 'Environment.ProcessPath' -->
+    <Rule Id="CA1840" Action="Warning" /> <!-- Use 'Environment.CurrentManagedThreadId' -->
+    <Rule Id="CA1841" Action="Warning" /> <!-- Prefer Dictionary.Contains methods -->
+    <Rule Id="CA1842" Action="Warning" /> <!-- Do not use 'WhenAll' with a single task -->
+    <Rule Id="CA1843" Action="Warning" /> <!-- Do not use 'WaitAll' with a single task -->
+    <Rule Id="CA1844" Action="Warning" /> <!-- Provide memory-based overrides of async methods when subclassing 'Stream' -->
+    <Rule Id="CA1845" Action="Warning" /> <!-- Use span-based 'string.Concat' -->
+    <Rule Id="CA1846" Action="Warning" /> <!-- Prefer 'AsSpan' over 'Substring' -->
+    <Rule Id="CA1847" Action="Warning" /> <!-- Use char literal for a single character lookup -->
+    <Rule Id="CA1848" Action="Info" />    <!-- Use the LoggerMessage delegates -->
+    <Rule Id="CA1849" Action="Warning" /> <!-- Call async methods when in an async method -->
+    
+    <!-- Security Rules -->
+    <Rule Id="CA2100" Action="Warning" /> <!-- Review SQL queries for security vulnerabilities -->
+    <Rule Id="CA2101" Action="Warning" /> <!-- Specify marshaling for P/Invoke string arguments -->
+    <Rule Id="CA2109" Action="Warning" /> <!-- Review visible event handlers -->
+    <Rule Id="CA2119" Action="Warning" /> <!-- Seal methods that satisfy private interfaces -->
+    <Rule Id="CA2153" Action="Warning" /> <!-- Do Not Catch Corrupted State Exceptions -->
+    <Rule Id="CA2300" Action="Warning" /> <!-- Do not use insecure deserializer BinaryFormatter -->
+    <Rule Id="CA2301" Action="Warning" /> <!-- Do not call BinaryFormatter.Deserialize without first setting BinaryFormatter.Binder -->
+    <Rule Id="CA2302" Action="Warning" /> <!-- Ensure BinaryFormatter.Binder is set before calling BinaryFormatter.Deserialize -->
+    <Rule Id="CA2305" Action="Warning" /> <!-- Do not use insecure deserializer LosFormatter -->
+    <Rule Id="CA2310" Action="Warning" /> <!-- Do not use insecure deserializer NetDataContractSerializer -->
+    <Rule Id="CA2311" Action="Warning" /> <!-- Do not deserialize without first setting NetDataContractSerializer.Binder -->
+    <Rule Id="CA2312" Action="Warning" /> <!-- Ensure NetDataContractSerializer.Binder is set before deserializing -->
+    <Rule Id="CA2315" Action="Warning" /> <!-- Do not use insecure deserializer ObjectStateFormatter -->
+    <Rule Id="CA2321" Action="Warning" /> <!-- Do not deserialize with JavaScriptSerializer using a SimpleTypeResolver -->
+    <Rule Id="CA2322" Action="Warning" /> <!-- Ensure JavaScriptSerializer is not initialized with SimpleTypeResolver before deserializing -->
+    <Rule Id="CA2326" Action="Warning" /> <!-- Do not use TypeNameHandling values other than None -->
+    <Rule Id="CA2327" Action="Warning" /> <!-- Do not use insecure JsonSerializerSettings -->
+    <Rule Id="CA2328" Action="Warning" /> <!-- Ensure that JsonSerializerSettings are secure -->
+    <Rule Id="CA2329" Action="Warning" /> <!-- Do not deserialize with JsonSerializer using an insecure configuration -->
+    <Rule Id="CA2330" Action="Warning" /> <!-- Ensure that JsonSerializer has a secure configuration when deserializing -->
+    
+    <!-- Additional Security Rules -->
+    <Rule Id="CA3001" Action="Warning" /> <!-- Review code for SQL injection vulnerabilities -->
+    <Rule Id="CA3002" Action="Warning" /> <!-- Review code for XSS vulnerabilities -->
+    <Rule Id="CA3003" Action="Warning" /> <!-- Review code for file path injection vulnerabilities -->
+    <Rule Id="CA3004" Action="Warning" /> <!-- Review code for information disclosure vulnerabilities -->
+    <Rule Id="CA3005" Action="Warning" /> <!-- Review code for LDAP injection vulnerabilities -->
+    <Rule Id="CA3006" Action="Warning" /> <!-- Review code for process command injection vulnerabilities -->
+    <Rule Id="CA3007" Action="Warning" /> <!-- Review code for open redirect vulnerabilities -->
+    <Rule Id="CA3008" Action="Warning" /> <!-- Review code for XPath injection vulnerabilities -->
+    <Rule Id="CA3009" Action="Warning" /> <!-- Review code for XML injection vulnerabilities -->
+    <Rule Id="CA3010" Action="Warning" /> <!-- Review code for XAML injection vulnerabilities -->
+    <Rule Id="CA3011" Action="Warning" /> <!-- Review code for DLL injection vulnerabilities -->
+    <Rule Id="CA3012" Action="Warning" /> <!-- Review code for regex injection vulnerabilities -->
+    <Rule Id="CA5350" Action="Warning" /> <!-- Do Not Use Weak Cryptographic Algorithms -->
+    <Rule Id="CA5351" Action="Warning" /> <!-- Do Not Use Broken Cryptographic Algorithms -->
+    <Rule Id="CA5358" Action="Warning" /> <!-- Review cipher mode usage with cryptography experts -->
+    <Rule Id="CA5359" Action="Warning" /> <!-- Do Not Disable Certificate Validation -->
+    <Rule Id="CA5360" Action="Warning" /> <!-- Do Not Call Dangerous Methods In Deserialization -->
+    <Rule Id="CA5361" Action="Warning" /> <!-- Do Not Disable SChannel Use of Strong Crypto -->
+    <Rule Id="CA5362" Action="Warning" /> <!-- Potential reference cycle in deserialized object graph -->
+    <Rule Id="CA5363" Action="Warning" /> <!-- Do Not Disable Request Validation -->
+    <Rule Id="CA5364" Action="Warning" /> <!-- Do Not Use Deprecated Security Protocols -->
+    <Rule Id="CA5365" Action="Warning" /> <!-- Do Not Disable HTTP Header Checking -->
+    <Rule Id="CA5366" Action="Warning" /> <!-- Use XmlReader for 'DataSet.ReadXml()' -->
+    <Rule Id="CA5367" Action="Warning" /> <!-- Do Not Serialize Types With Pointer Fields -->
+    <Rule Id="CA5368" Action="Warning" /> <!-- Set ViewStateUserKey For Classes Derived From Page -->
+    <Rule Id="CA5369" Action="Warning" /> <!-- Use XmlReader for 'XmlSerializer.Deserialize()' -->
+    <Rule Id="CA5370" Action="Warning" /> <!-- Use XmlReader for XmlValidatingReader constructor -->
+    <Rule Id="CA5371" Action="Warning" /> <!-- Use XmlReader for 'XmlSchema.Read()' -->
+    <Rule Id="CA5372" Action="Warning" /> <!-- Use XmlReader for XPathDocument constructor -->
+    <Rule Id="CA5373" Action="Warning" /> <!-- Do not use obsolete key derivation function -->
+    <Rule Id="CA5374" Action="Warning" /> <!-- Do Not Use XslTransform -->
+    <Rule Id="CA5375" Action="Warning" /> <!-- Do Not Use Account Shared Access Signature -->
+    <Rule Id="CA5376" Action="Warning" /> <!-- Use SharedAccessProtocol HttpsOnly -->
+    <Rule Id="CA5377" Action="Warning" /> <!-- Use Container Level Access Policy -->
+    <Rule Id="CA5378" Action="Warning" /> <!-- Do not disable ServicePointManagerSecurityProtocols -->
+    <Rule Id="CA5379" Action="Warning" /> <!-- Ensure Key Derivation Function algorithm is sufficiently strong -->
+    <Rule Id="CA5380" Action="Warning" /> <!-- Do Not Add Certificates To Root Store -->
+    <Rule Id="CA5381" Action="Warning" /> <!-- Ensure Certificates Are Not Added To Root Store -->
+    <Rule Id="CA5382" Action="Warning" /> <!-- Use Secure Cookies In ASP.NET Core -->
+    <Rule Id="CA5383" Action="Warning" /> <!-- Ensure Use Secure Cookies In ASP.NET Core -->
+    <Rule Id="CA5384" Action="Warning" /> <!-- Do Not Use Digital Signature Algorithm (DSA) -->
+    <Rule Id="CA5385" Action="Warning" /> <!-- Use Rivest-Shamir-Adleman (RSA) Algorithm With Sufficient Key Size -->
+    <Rule Id="CA5386" Action="Warning" /> <!-- Avoid hardcoding SecurityProtocolType value -->
+    <Rule Id="CA5387" Action="Warning" /> <!-- Do Not Use Weak Key Derivation Function With Insufficient Iteration Count -->
+    <Rule Id="CA5388" Action="Warning" /> <!-- Ensure Sufficient Iteration Count When Using Weak Key Derivation Function -->
+    <Rule Id="CA5389" Action="Warning" /> <!-- Do Not Add Archive Item's Path To The Target File System Path -->
+    <Rule Id="CA5390" Action="Warning" /> <!-- Do not hard-code encryption key -->
+    <Rule Id="CA5391" Action="Warning" /> <!-- Use antiforgery tokens in ASP.NET Core MVC controllers -->
+    <Rule Id="CA5392" Action="Warning" /> <!-- Use DefaultDllImportSearchPaths attribute for P/Invokes -->
+    <Rule Id="CA5393" Action="Warning" /> <!-- Do not use unsafe DllImportSearchPath value -->
+    <Rule Id="CA5394" Action="Warning" /> <!-- Do not use insecure randomness -->
+    <Rule Id="CA5395" Action="Warning" /> <!-- Miss HttpVerb attribute for action methods -->
+    <Rule Id="CA5396" Action="Warning" /> <!-- Set HttpOnly to true for HttpCookies -->
+    <Rule Id="CA5397" Action="Warning" /> <!-- Do not use deprecated SslProtocols values -->
+    <Rule Id="CA5398" Action="Warning" /> <!-- Avoid hardcoded SslProtocols values -->
+    <Rule Id="CA5399" Action="Warning" /> <!-- HttpClients should enable certificate revocation list checks -->
+    <Rule Id="CA5400" Action="Warning" /> <!-- Ensure HttpClient certificate revocation list check is not disabled -->
+    <Rule Id="CA5401" Action="Warning" /> <!-- Do not use CreateEncryptor with non-default IV -->
+    <Rule Id="CA5402" Action="Warning" /> <!-- Use CreateEncryptor with the default IV -->
+    <Rule Id="CA5403" Action="Warning" /> <!-- Do not hard-code certificate -->
+    
+    <!-- Usage Rules -->
+    <Rule Id="CA2200" Action="Warning" /> <!-- Rethrow to preserve stack details -->
+    <Rule Id="CA2201" Action="Warning" /> <!-- Do not raise reserved exception types -->
+    <Rule Id="CA2207" Action="Warning" /> <!-- Initialize value type static fields inline -->
+    <Rule Id="CA2208" Action="Warning" /> <!-- Instantiate argument exceptions correctly -->
+    <Rule Id="CA2211" Action="Warning" /> <!-- Non-constant fields should not be visible -->
+    <Rule Id="CA2213" Action="Warning" /> <!-- Disposable fields should be disposed -->
+    <Rule Id="CA2214" Action="Warning" /> <!-- Do not call overridable methods in constructors -->
+    <Rule Id="CA2215" Action="Warning" /> <!-- Dispose methods should call base class dispose -->
+    <Rule Id="CA2216" Action="Warning" /> <!-- Disposable types should declare finalizer -->
+    <Rule Id="CA2217" Action="Warning" /> <!-- Do not mark enums with FlagsAttribute -->
+    <Rule Id="CA2218" Action="Warning" /> <!-- Override GetHashCode on overriding Equals -->
+    <Rule Id="CA2219" Action="Warning" /> <!-- Do not raise exceptions in finally clauses -->
+    <Rule Id="CA2224" Action="Warning" /> <!-- Override Equals on overloading operator equals -->
+    <Rule Id="CA2225" Action="Warning" /> <!-- Operator overloads have named alternates -->
+    <Rule Id="CA2226" Action="Warning" /> <!-- Operators should have symmetrical overloads -->
+    <Rule Id="CA2227" Action="Warning" /> <!-- Collection properties should be read only -->
+    <Rule Id="CA2229" Action="Warning" /> <!-- Implement serialization constructors -->
+    <Rule Id="CA2231" Action="Warning" /> <!-- Overload operator equals on overriding value type Equals -->
+    <Rule Id="CA2234" Action="Warning" /> <!-- Pass system uri objects instead of strings -->
+    <Rule Id="CA2235" Action="Warning" /> <!-- Mark all non-serializable fields -->
+    <Rule Id="CA2237" Action="Warning" /> <!-- Mark ISerializable types with serializable -->
+    <Rule Id="CA2241" Action="Warning" /> <!-- Provide correct arguments to formatting methods -->
+    <Rule Id="CA2242" Action="Warning" /> <!-- Test for NaN correctly -->
+    <Rule Id="CA2243" Action="Warning" /> <!-- Attribute string literals should parse correctly -->
+    <Rule Id="CA2244" Action="Warning" /> <!-- Do not duplicate indexed element initializations -->
+    <Rule Id="CA2245" Action="Warning" /> <!-- Do not assign a property to itself -->
+    <Rule Id="CA2246" Action="Warning" /> <!-- Assigning symbol and its member in the same statement -->
+    <Rule Id="CA2247" Action="Warning" /> <!-- Argument passed to TaskCompletionSource constructor should be TaskCreationOptions enum instead of TaskContinuationOptions enum -->
+    <Rule Id="CA2248" Action="Warning" /> <!-- Provide correct 'enum' argument to 'Enum.HasFlag' -->
+    <Rule Id="CA2249" Action="Warning" /> <!-- Consider using 'string.Contains' instead of 'string.IndexOf' -->
+    <Rule Id="CA2250" Action="Warning" /> <!-- Use 'ThrowIfCancellationRequested' -->
+    <Rule Id="CA2251" Action="Warning" /> <!-- Use 'string.Equals' -->
+    <Rule Id="CA2252" Action="Warning" /> <!-- This API requires opting into preview features -->
+    <Rule Id="CA2253" Action="Warning" /> <!-- Named placeholders should not be numeric values -->
+    <Rule Id="CA2254" Action="Warning" /> <!-- Template should be a static expression -->
+    <Rule Id="CA2255" Action="Warning" /> <!-- The 'ModuleInitializer' attribute should not be used in libraries -->
+    <Rule Id="CA2256" Action="Warning" /> <!-- All members declared in parent interfaces must have an implementation in all applied DynamicInterfaceCastableImplementation-attributed interfaces -->
+    <Rule Id="CA2257" Action="Warning" /> <!-- Members defined on an interface with the 'DynamicInterfaceCastableImplementationAttribute' should be 'static' -->
+    <Rule Id="CA2258" Action="Warning" /> <!-- Providing a 'DynamicInterfaceCastableImplementation' interface in Visual Basic is unsupported -->
+  </Rules>
+  
+</RuleSet>

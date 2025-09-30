@@ -2,9 +2,8 @@ using System;
 
 namespace XTinyLog
 {
-    /// <summary>
-    /// Provides a fluent API for building log configuration
-    /// </summary>
+    /// <summary>/// Provides a fluent API for building log configuration
+    /// .</summary>
     public class LogConfigurationBuilder
     {
         private readonly DefaultLogConfiguration _configuration;
@@ -17,11 +16,10 @@ namespace XTinyLog
             _configuration = new DefaultLogConfiguration();
         }
 
-        /// <summary>
-        /// Sets the log directory path
-        /// </summary>
-        /// <param name="logDirectory">The directory where log files will be stored</param>
-        /// <returns>The configuration builder for method chaining</returns>
+        /// <summary>/// Sets the log directory path
+        /// .</summary>
+        /// <param name="The directory where log files will be stored">The directory where log files will be stored.</param>
+        /// <returns>The configuration builder for method chaining.</returns>
         /// <exception cref="ArgumentException">Thrown when logDirectory is null or empty</exception>
         public LogConfigurationBuilder WithLogDirectory(string logDirectory)
         {
@@ -32,11 +30,10 @@ namespace XTinyLog
             return this;
         }
 
-        /// <summary>
-        /// Sets the application name used for organizing log files
-        /// </summary>
-        /// <param name="applicationName">The name of the application</param>
-        /// <returns>The configuration builder for method chaining</returns>
+        /// <summary>/// Sets the application name used for organizing log files
+        /// .</summary>
+        /// <param name="The name of the application">The name of the application.</param>
+        /// <returns>The configuration builder for method chaining.</returns>
         /// <exception cref="ArgumentException">Thrown when applicationName is null or empty</exception>
         public LogConfigurationBuilder WithApplicationName(string applicationName)
         {
@@ -47,11 +44,10 @@ namespace XTinyLog
             return this;
         }
 
-        /// <summary>
-        /// Sets the file name generator function
-        /// </summary>
-        /// <param name="fileNameGenerator">A function that generates the log file name</param>
-        /// <returns>The configuration builder for method chaining</returns>
+        /// <summary>/// Sets the file name generator function
+        /// .</summary>
+        /// <param name="A function that generates the log file name">A function that generates the log file name.</param>
+        /// <returns>The configuration builder for method chaining.</returns>
         /// <exception cref="ArgumentNullException">Thrown when fileNameGenerator is null</exception>
         public LogConfigurationBuilder WithFileName(Func<string> fileNameGenerator)
         {
@@ -59,11 +55,10 @@ namespace XTinyLog
             return this;
         }
 
-        /// <summary>
-        /// Sets the file name using a static string
-        /// </summary>
-        /// <param name="fileName">The static file name to use</param>
-        /// <returns>The configuration builder for method chaining</returns>
+        /// <summary>/// Sets the file name using a static string
+        /// .</summary>
+        /// <param name="The static file name to use">The static file name to use.</param>
+        /// <returns>The configuration builder for method chaining.</returns>
         /// <exception cref="ArgumentException">Thrown when fileName is null or empty</exception>
         public LogConfigurationBuilder WithFileName(string fileName)
         {
@@ -74,11 +69,10 @@ namespace XTinyLog
             return this;
         }
 
-        /// <summary>
-        /// Sets the maximum file size in kilobytes
-        /// </summary>
-        /// <param name="maxFileSizeKB">The maximum file size in kilobytes</param>
-        /// <returns>The configuration builder for method chaining</returns>
+        /// <summary>/// Sets the maximum file size in kilobytes
+        /// .</summary>
+        /// <param name="The maximum file size in kilobytes">The maximum file size in kilobytes.</param>
+        /// <returns>The configuration builder for method chaining.</returns>
         /// <exception cref="ArgumentException">Thrown when maxFileSizeKB is less than or equal to 0</exception>
         public LogConfigurationBuilder WithMaxFileSize(long maxFileSizeKB)
         {
@@ -89,11 +83,10 @@ namespace XTinyLog
             return this;
         }
 
-        /// <summary>
-        /// Sets the file name to use the current date in the specified format
-        /// </summary>
-        /// <param name="dateFormat">The date format string (default: "dd MM yyyy")</param>
-        /// <returns>The configuration builder for method chaining</returns>
+        /// <summary>/// Sets the file name to use the current date in the specified format
+        /// .</summary>
+        /// <param name="The date format string (default: "dd MM yyyy")">The date format string (default: "dd MM yyyy").</param>
+        /// <returns>The configuration builder for method chaining.</returns>
         /// <exception cref="ArgumentException">Thrown when dateFormat is null or empty</exception>
         public LogConfigurationBuilder WithDateBasedFileName(string dateFormat = "dd MM yyyy")
         {
@@ -104,15 +97,14 @@ namespace XTinyLog
             return this;
         }
 
-        /// <summary>
-        /// Builds and validates the configuration
-        /// </summary>
-        /// <returns>The built configuration</returns>
+        /// <summary>/// Builds and validates the configuration
+        /// .</summary>
+        /// <returns>The built configuration.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the configuration is invalid</exception>
         public ILogConfiguration Build()
         {
             var validationResult = ConfigurationValidator.Validate(_configuration);
-            
+
             if (!validationResult.IsValid)
             {
                 throw new InvalidOperationException($"Configuration validation failed:{Environment.NewLine}{validationResult.GetErrorsAsString()}");
@@ -121,19 +113,17 @@ namespace XTinyLog
             return _configuration;
         }
 
-        /// <summary>
-        /// Builds the configuration without validation (for advanced scenarios)
-        /// </summary>
-        /// <returns>The built configuration</returns>
+        /// <summary>/// Builds the configuration without validation (for advanced scenarios)
+        /// .</summary>
+        /// <returns>The built configuration.</returns>
         public ILogConfiguration BuildWithoutValidation()
         {
             return _configuration;
         }
 
-        /// <summary>
-        /// Validates the current configuration without building it
-        /// </summary>
-        /// <returns>The validation result</returns>
+        /// <summary>/// Validates the current configuration without building it
+        /// .</summary>
+        /// <returns>The validation result.</returns>
         public ValidationResult Validate()
         {
             return ConfigurationValidator.Validate(_configuration);

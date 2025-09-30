@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Project-specific properties -->
+    <AssemblyName>XTinyLog.Serilog</AssemblyName>
+    <RootNamespace>XTinyLog.Serilog</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
+    <!-- Localization -->
+    <NeutralLanguage>en-US</NeutralLanguage>
+    
+    <!-- Package-specific metadata (inherits common metadata from Directory.Build.props) -->
+    <PackageId>XTinyLog.Serilog</PackageId>
+    <Title>XTinyLog Serilog Sink - HTML Logging for Serilog</Title>
+    <Description>A Serilog sink that outputs logs in XTinyLog's interactive HTML format with responsive design, dark/light themes, and rich formatting capabilities. Seamlessly integrates with Serilog's logging pipeline while providing beautiful HTML log files with real-time filtering, search, and export capabilities.</Description>
+    <PackageTags>$(PackageTags);serilog;sink;html-logging;structured-logging;async-logging</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Initial release of XTinyLog Serilog Sink. Features include synchronous and asynchronous logging, structured property support, flexible configuration options, and seamless integration with Serilog's logging pipeline.</PackageReleaseNotes>
+    <!-- Override icon from Directory.Build.props since we don't have one for this package -->
+    <PackageIcon></PackageIcon>
+  </PropertyGroup>
+
+  <!-- Framework-specific configurations -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net461'">
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Project references -->
+  <ItemGroup>
+    <ProjectReference Include="..\XTinyLog\XTinyLog.csproj" />
+  </ItemGroup>
+
+  <!-- Package references -->
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.0.2" />
+  </ItemGroup>
+
+  <!-- Package content - package-specific files -->
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="README.md" />
+    <None Include="CHANGELOG.md" Pack="true" PackagePath="CHANGELOG.md" />
+    <!-- Include LICENSE from root -->
+    <None Include="$(MSBuildThisFileDirectory)..\..\LICENSE" Pack="true" PackagePath="LICENSE.txt" />
+  </ItemGroup>
+  
+  <!-- Exclude global package content to avoid conflicts -->
+  <ItemGroup>
+    <None Remove="$(MSBuildThisFileDirectory)..\..\README.md" />
+    <None Remove="$(MSBuildThisFileDirectory)..\..\CHANGELOG.md" />
+  </ItemGroup>
+
+</Project>

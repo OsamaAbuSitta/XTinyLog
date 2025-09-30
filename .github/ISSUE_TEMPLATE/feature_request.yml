@@ -1,0 +1,159 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for XTinyLog
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before submitting your feature request
+      options:
+        - label: I have searched existing issues and discussions to ensure this feature hasn't been requested already
+          required: true
+        - label: I have read the [Contributing Guidelines](https://github.com/OsamaAbuSitta/XTinyLog/blob/main/CONTRIBUTING.md)
+          required: true
+        - label: This feature request is within the scope of XTinyLog (logging library functionality)
+          required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What category does this feature request fall into?
+      options:
+        - Core Logging API
+        - HTML Output / UI
+        - Configuration
+        - Performance
+        - Documentation
+        - Developer Experience
+        - Integration
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What use case does it address?
+      placeholder: |
+        Describe the problem or limitation you're experiencing that this feature would solve.
+        
+        Example: "As a developer, I need to be able to filter logs by custom properties because..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution in detail
+      placeholder: |
+        Describe how you envision this feature working. Be as specific as possible.
+        
+        Include:
+        - API design (if applicable)
+        - User interface changes (if applicable)
+        - Configuration options (if applicable)
+        - Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: api_example
+    attributes:
+      label: API Usage Example
+      description: If this involves API changes, show how you would like to use the new feature
+      render: csharp
+      placeholder: |
+        // Example of how the new feature would be used
+        var logger = XLog.Create(config =>
+        {
+            // New configuration option
+            config.NewFeature = true;
+        });
+        
+        // New method or functionality
+        logger.NewMethod("example");
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: |
+        Describe any alternative approaches you've considered or current workarounds you're using.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Critical - Blocking my project
+        - High - Would significantly improve my workflow
+        - Medium - Nice to have improvement
+        - Low - Minor enhancement
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Compatibility Considerations
+      description: Please consider the impact of this feature
+      options:
+        - label: This feature should maintain backward compatibility
+        - label: This feature may require breaking changes (please explain in additional context)
+        - label: This feature should work across all supported .NET frameworks
+        - label: This feature affects the HTML output interface
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: Provide specific use cases where this feature would be beneficial
+      placeholder: |
+        1. Use case 1: Description of scenario where this feature helps
+        2. Use case 2: Another scenario
+        3. Use case 3: Additional scenario
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, mockups, screenshots, or examples
+      placeholder: |
+        Any additional information that would help us understand your request:
+        - Screenshots or mockups
+        - Links to similar features in other libraries
+        - Performance considerations
+        - Security implications
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you interested in contributing to this feature?
+      options:
+        - label: I would be willing to implement this feature myself
+        - label: I would be willing to help test this feature
+        - label: I would be willing to help with documentation
+        - label: I would prefer someone else to implement this feature

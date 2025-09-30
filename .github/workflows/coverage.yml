@@ -1,0 +1,101 @@
+name: Code Coverage
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    
+    - name: Run tests with coverage
+      run: |
+        dotnet test tests/XTinyLog.Tests/XTinyLog.Test.csproj \
+          --configuration Release \
+          --no-build \
+          --collect:"XPlat Code Coverage" \
+          --results-directory TestResults \
+          --logger "trx;LogFileName=test-results.trx" \
+          --verbosity normal \
+          /p:CollectCoverage=true \
+          /p:CoverletOutputFormat=cobertura \
+          /p:CoverletOutput=TestResults/coverage.cobertura.xml \
+          /p:Exclude="[*.Tests]*,[*]*.Program,[*]*AssemblyInfo,[*]*GlobalUsings" \
+          /p:Threshold=70 \
+          /p:ThresholdType="line,branch" \
+          /p:ThresholdStat=minimum
+    
+    - name: Install ReportGenerator
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.3.8
+    
+    - name: Generate coverage report
+      run: |
+        reportgenerator \
+          -reports:"TestResults/**/coverage.cobertura.xml" \
+          -targetdir:"TestResults/html" \
+          -reporttypes:"Html;Badges;Cobertura;TextSummary" \
+          -verbosity:Info \
+          -title:"XTinyLog Code Coverage Report"
+    
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: TestResults/**/coverage.cobertura.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}
+    
+    - name: Upload coverage to Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: TestResults/**/coverage.cobertura.xml
+        format: cobertura
+    
+    - name: Publish Test Results
+      uses: dorny/test-reporter@v1
+      if: success() || failure()
+      with:
+        name: Test Results
+        path: TestResults/test-results.trx
+        reporter: dotnet-trx
+    
+    - name: Upload coverage artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: coverage-report
+        path: |
+          TestResults/html/
+          TestResults/**/coverage.cobertura.xml
+          TestResults/test-results.trx
+        retention-days: 30
+    
+    - name: Comment coverage on PR
+      if: github.event_name == 'pull_request'
+      uses: 5monkeys/cobertura-action@master
+      with:
+        path: TestResults/**/coverage.cobertura.xml
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        minimum_coverage: 70
+        fail_below_threshold: false
+        show_missing: true

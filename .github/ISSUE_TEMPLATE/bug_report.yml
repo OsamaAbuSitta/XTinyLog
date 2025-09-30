@@ -1,0 +1,167 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior in XTinyLog
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug! Please fill out the information below to help us understand and reproduce the issue.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before submitting your bug report
+      options:
+        - label: I have searched existing issues to ensure this bug hasn't been reported already
+          required: true
+        - label: I have read the [Contributing Guidelines](https://github.com/OsamaAbuSitta/XTinyLog/blob/main/CONTRIBUTING.md)
+          required: true
+        - label: I am using a supported version of XTinyLog (see [Security Policy](https://github.com/OsamaAbuSitta/XTinyLog/blob/main/SECURITY.md))
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: XTinyLog Version
+      description: What version of XTinyLog are you using?
+      placeholder: "e.g., 2.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Target Framework
+      description: Which .NET framework are you targeting?
+      options:
+        - .NET Framework 4.6.1
+        - .NET Standard 2.0
+        - .NET 6.0
+        - .NET 8.0
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - Windows 10
+        - Windows 11
+        - Windows Server 2019
+        - Windows Server 2022
+        - Linux (Ubuntu)
+        - Linux (Other)
+        - macOS
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what happened and what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the behavior
+      placeholder: |
+        1. Create a new XLog instance with configuration...
+        2. Call the method...
+        3. Observe the behavior...
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: Describe the expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: Describe what actually happened instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Sample
+      description: Please provide a minimal code sample that reproduces the issue
+      render: csharp
+      placeholder: |
+        using XTinyLog;
+        
+        // Your code here that demonstrates the issue
+        var logger = XLog.Create();
+        logger.Info("Test message");
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log Output / Error Messages
+      description: If applicable, add any error messages, stack traces, or log output
+      render: text
+      placeholder: Paste any relevant error messages or log output here
+    validations:
+      required: false
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Configuration
+      description: If you're using custom configuration, please share the relevant parts
+      render: csharp
+      placeholder: |
+        var logger = XLog.Create(config =>
+        {
+            config.LogDirectory = @"C:\Logs";
+            // Other configuration...
+        });
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here (screenshots, related issues, etc.)
+      placeholder: Any additional information that might be helpful
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impact
+      description: How does this bug affect your usage of XTinyLog?
+      options:
+        - label: Blocks my application from working
+        - label: Causes incorrect behavior but has workarounds
+        - label: Minor inconvenience
+        - label: Cosmetic issue only

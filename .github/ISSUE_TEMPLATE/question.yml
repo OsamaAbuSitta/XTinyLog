@@ -1,0 +1,156 @@
+name: ❓ Question
+description: Ask a question about XTinyLog usage, configuration, or best practices
+title: "[Question]: "
+labels: ["question", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about XTinyLog? We're here to help! Please provide as much context as possible.
+        
+        **Note**: For general discussions, consider using [GitHub Discussions](https://github.com/OsamaAbuSitta/XTinyLog/discussions) instead.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before asking your question
+      options:
+        - label: I have read the [README](https://github.com/OsamaAbuSitta/XTinyLog/blob/main/README.md) and documentation
+          required: true
+        - label: I have searched existing issues and discussions for similar questions
+          required: true
+        - label: This is a specific question about XTinyLog (not a general programming question)
+          required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What category does your question fall into?
+      options:
+        - Installation and Setup
+        - Configuration
+        - Usage and API
+        - Performance
+        - HTML Output and Styling
+        - Integration with other frameworks
+        - Best Practices
+        - Troubleshooting
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: XTinyLog Version
+      description: What version of XTinyLog are you using or planning to use?
+      placeholder: "e.g., 2.0.0 or latest"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Target Framework
+      description: Which .NET framework are you using?
+      options:
+        - .NET Framework 4.6.1
+        - .NET Standard 2.0
+        - .NET 6.0
+        - .NET 8.0
+        - Not applicable
+        - Other (please specify in question)
+    validations:
+      required: false
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please describe your question in detail
+      placeholder: |
+        Be as specific as possible. Include:
+        - What you're trying to achieve
+        - What you've tried so far
+        - What specific aspect you need help with
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and Background
+      description: Provide context about your project or use case
+      placeholder: |
+        Help us understand your situation:
+        - What type of application are you building?
+        - What are your logging requirements?
+        - Any specific constraints or requirements?
+    validations:
+      required: false
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Current Code (if applicable)
+      description: Share any relevant code you're working with
+      render: csharp
+      placeholder: |
+        // Your current code or what you've tried
+        var logger = XLog.Create();
+        // ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Outcome
+      description: What outcome or behavior are you hoping to achieve?
+      placeholder: Describe what you want to accomplish or what behavior you expect
+    validations:
+      required: false
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What Have You Tried?
+      description: What approaches have you already attempted?
+      placeholder: |
+        List what you've already tried:
+        - Approach 1: Description and result
+        - Approach 2: Description and result
+        - Documentation/resources you've consulted
+    validations:
+      required: false
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this question for your project?
+      options:
+        - Blocking my project - need help ASAP
+        - Important for upcoming deadline
+        - Would like to know for planning purposes
+        - Just curious / learning
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other details that might be helpful
+      placeholder: |
+        Include any additional context:
+        - Error messages (if any)
+        - Screenshots
+        - Links to relevant documentation
+        - Similar solutions you've seen elsewhere
+    validations:
+      required: false

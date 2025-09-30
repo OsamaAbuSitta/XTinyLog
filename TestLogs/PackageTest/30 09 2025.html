@@ -1,0 +1,1025 @@
+<!DOCTYPE html><html lang="en" data-theme="light" xmlns="http://www.w3.org/1999/xhtml"> 
+ <head> <meta charset="utf-8" />
+               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+               <meta name="description" content="XTinyLog - Interactive HTML Log Viewer" />
+<title>30 09 2025</title>
+<style>
+            /* CSS Custom Properties for Theme Management */
+            :root {
+                /* Light Theme Colors */
+                --bg-primary: #ffffff;
+                --bg-secondary: #f8f9fa;
+                --bg-tertiary: #e9ecef;
+                --text-primary: #212529;
+                --text-secondary: #6c757d;
+                --text-muted: #868e96;
+                --border-color: #dee2e6;
+                --shadow-color: rgba(0, 0, 0, 0.1);
+
+                /* Log Level Colors - Light Theme */
+                --info-bg: #d1ecf1;
+                --info-text: #0c5460;
+                --info-border: #bee5eb;
+
+                --warning-bg: #fff3cd;
+                --warning-text: #856404;
+                --warning-border: #ffeaa7;
+
+                --error-bg: #f8d7da;
+                --error-text: #721c24;
+                --error-border: #f5c6cb;
+
+                --debug-bg: #d4edda;
+                --debug-text: #155724;
+                --debug-border: #c3e6cb;
+
+                /* Interactive Elements */
+                --highlight-bg: #fff3cd;
+                --highlight-text: #856404;
+                --button-bg: #007bff;
+                --button-text: #ffffff;
+                --button-hover-bg: #0056b3;
+                --input-bg: #ffffff;
+                --input-border: #ced4da;
+                --input-focus-border: #80bdff;
+
+                /* Typography */
+                --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+                --font-size-base: 14px;
+                --font-size-sm: 12px;
+                --font-size-lg: 16px;
+                --line-height-base: 1.5;
+
+                /* Spacing */
+                --spacing-xs: 0.25rem;
+                --spacing-sm: 0.5rem;
+                --spacing-md: 1rem;
+                --spacing-lg: 1.5rem;
+                --spacing-xl: 2rem;
+
+                /* Border Radius */
+                --border-radius-sm: 0.25rem;
+                --border-radius-md: 0.375rem;
+                --border-radius-lg: 0.5rem;
+
+                /* Transitions */
+                --transition-fast: 0.15s ease-in-out;
+                --transition-normal: 0.3s ease-in-out;
+            }
+
+            /* Dark Theme */
+            [data-theme='dark'] {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --bg-tertiary: #404040;
+                --text-primary: #ffffff;
+                --text-secondary: #b3b3b3;
+                --text-muted: #808080;
+                --border-color: #404040;
+                --shadow-color: rgba(0, 0, 0, 0.3);
+
+                /* Log Level Colors - Dark Theme */
+                --info-bg: #1e3a5f;
+                --info-text: #9fdbf0;
+                --info-border: #2c5282;
+
+                --warning-bg: #5d4e37;
+                --warning-text: #f6e05e;
+                --warning-border: #744210;
+
+                --error-bg: #5d2a2a;
+                --error-text: #feb2b2;
+                --error-border: #742a2a;
+
+                --debug-bg: #2d5a2d;
+                --debug-text: #9ae6b4;
+                --debug-border: #38a169;
+
+                --highlight-bg: #5d4e37;
+                --highlight-text: #f6e05e;
+                --button-bg: #0d6efd;
+                --button-hover-bg: #0b5ed7;
+                --input-bg: #2d2d2d;
+                --input-border: #404040;
+                --input-focus-border: #0d6efd;
+            }
+
+            /* Reset and Base Styles */
+            *, *::before, *::after {
+                box-sizing: border-box;
+            }
+
+            html {
+                font-size: var(--font-size-base);
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: var(--font-family-primary);
+                font-size: var(--font-size-base);
+                line-height: var(--line-height-base);
+                color: var(--text-primary);
+                background-color: var(--bg-primary);
+                transition: background-color var(--transition-normal), color var(--transition-normal);
+            }
+
+            /* Layout Grid */
+            .log-layout {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                min-height: 100vh;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            /* Header Styles */
+            .log-header {
+                background-color: var(--bg-secondary);
+                border-bottom: 1px solid var(--border-color);
+                padding: var(--spacing-md);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                box-shadow: 0 2px 4px var(--shadow-color);
+            }
+
+            .log-title {
+                margin: 0 0 var(--spacing-md) 0;
+                font-size: var(--font-size-lg);
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+
+            /* Controls Layout */
+            .log-controls {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: var(--spacing-md);
+                align-items: end;
+            }
+
+            .control-group {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+
+            .control-label {
+                font-size: var(--font-size-sm);
+                font-weight: 500;
+                color: var(--text-secondary);
+                margin-bottom: var(--spacing-xs);
+            }
+
+            /* Form Controls */
+            .form-control {
+                padding: var(--spacing-sm) var(--spacing-md);
+                border: 1px solid var(--input-border);
+                border-radius: var(--border-radius-md);
+                background-color: var(--input-bg);
+                color: var(--text-primary);
+                font-size: var(--font-size-base);
+                transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+                width: 100%;
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--input-focus-border);
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                border: none;
+                border-radius: var(--border-radius-md);
+                background-color: var(--button-bg);
+                color: var(--button-text);
+                font-size: var(--font-size-base);
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color var(--transition-fast), transform var(--transition-fast);
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--spacing-xs);
+            }
+
+            .btn:hover {
+                background-color: var(--button-hover-bg);
+                transform: translateY(-1px);
+            }
+
+            .btn:active {
+                transform: translateY(0);
+            }
+
+            .btn-secondary {
+                background-color: var(--bg-tertiary);
+                color: var(--text-primary);
+            }
+
+            .btn-secondary:hover {
+                background-color: var(--border-color);
+            }
+
+            /* Main Content Area */
+            .log-main {
+                padding: var(--spacing-md);
+                overflow-y: auto;
+            }
+
+            /* Log Container */
+            .log-container {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-sm);
+                max-width: 100%;
+            }
+
+            /* Log Entry Styles */
+            .log-entry {
+                border-radius: var(--border-radius-md);
+                border-left: 4px solid;
+                background-color: var(--bg-secondary);
+                transition: all var(--transition-fast);
+                position: relative;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                hyphens: auto;
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .log-entry:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px var(--shadow-color);
+            }
+
+            .log-entry-header {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-md);
+                padding: var(--spacing-md);
+                cursor: pointer;
+                user-select: none;
+                transition: background-color var(--transition-fast);
+            }
+
+            .log-entry-header:hover {
+                background-color: var(--bg-tertiary);
+            }
+
+            .log-entry-header:focus {
+                outline: 2px solid var(--input-focus-border);
+                outline-offset: -2px;
+            }
+
+            .log-toggle-icon {
+                font-size: var(--font-size-sm);
+                color: var(--text-muted);
+                transition: transform var(--transition-fast);
+                min-width: 16px;
+                text-align: center;
+            }
+
+            .log-entry.collapsed .log-toggle-icon {
+                transform: rotate(-90deg);
+            }
+
+            .log-level {
+                font-size: var(--font-size-sm);
+                font-weight: 600;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                border-radius: var(--border-radius-sm);
+                text-transform: uppercase;
+                min-width: 60px;
+                text-align: center;
+            }
+
+            .log-preview {
+                flex: 1;
+                font-family: var(--font-family-mono);
+                color: var(--text-secondary);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .log-entry-content {
+                padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+                border-top: 1px solid var(--border-color);
+                background-color: var(--bg-primary);
+            }
+
+            .log-entry.collapsed .log-entry-content {
+                display: none;
+            }
+
+            .log-entry.info {
+                border-left-color: var(--info-border);
+            }
+
+            .log-entry.info .log-level {
+                background-color: var(--info-bg);
+                color: var(--info-text);
+            }
+
+            .log-entry.info .log-entry-content {
+                background-color: var(--info-bg);
+                color: var(--info-text);
+            }
+
+            .log-entry.warning {
+                border-left-color: var(--warning-border);
+            }
+
+            .log-entry.warning .log-level {
+                background-color: var(--warning-bg);
+                color: var(--warning-text);
+            }
+
+            .log-entry.warning .log-entry-content {
+                background-color: var(--warning-bg);
+                color: var(--warning-text);
+            }
+
+            .log-entry.error {
+                border-left-color: var(--error-border);
+            }
+
+            .log-entry.error .log-level {
+                background-color: var(--error-bg);
+                color: var(--error-text);
+            }
+
+            .log-entry.error .log-entry-content {
+                background-color: var(--error-bg);
+                color: var(--error-text);
+            }
+
+            .log-entry.debug {
+                border-left-color: var(--debug-border);
+            }
+
+            .log-entry.debug .log-level {
+                background-color: var(--debug-bg);
+                color: var(--debug-text);
+            }
+
+            .log-entry.debug .log-entry-content {
+                background-color: var(--debug-bg);
+                color: var(--debug-text);
+            }
+
+            /* Log Entry Content */
+            .log-time {
+                font-family: var(--font-family-mono);
+                font-size: var(--font-size-sm);
+                color: var(--text-muted);
+                margin-right: var(--spacing-md);
+                white-space: nowrap;
+            }
+
+            .log-message {
+                flex: 1;
+                font-family: var(--font-family-mono);
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+
+            /* Highlight for Search Results */
+            .highlight {
+                background-color: var(--highlight-bg);
+                color: var(--highlight-text);
+                padding: 0.1em 0.2em;
+                border-radius: var(--border-radius-sm);
+                font-weight: 600;
+            }
+
+            /* Responsive Design - Mobile First */
+
+            /* Small devices (landscape phones, 576px and up) */
+            @media (min-width: 576px) {
+                .log-controls {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .log-header {
+                    padding: var(--spacing-lg);
+                }
+            }
+
+            /* Medium devices (tablets, 768px and up) */
+            @media (min-width: 768px) {
+                .log-controls {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                .log-entry {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: var(--spacing-md);
+                }
+
+                .log-time {
+                    min-width: 100px;
+                }
+            }
+
+            /* Large devices (desktops, 992px and up) */
+            @media (min-width: 992px) {
+                .log-controls {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+
+                .log-main {
+                    padding: var(--spacing-xl);
+                }
+
+                .log-container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+            }
+
+            /* Extra large devices (large desktops, 1200px and up) */
+            @media (min-width: 1200px) {
+                .log-controls {
+                    grid-template-columns: repeat(5, 1fr);
+                }
+            }
+
+            /* Print Styles */
+            @media print {
+                .log-header {
+                    position: static;
+                    box-shadow: none;
+                    border-bottom: 2px solid #000;
+                }
+
+                .log-entry {
+                    break-inside: avoid;
+                    box-shadow: none;
+                    border: 1px solid #000;
+                    margin-bottom: var(--spacing-sm);
+                }
+
+                .btn {
+                    display: none;
+                }
+            }
+
+            /* Accessibility Improvements */
+            @media (prefers-reduced-motion: reduce) {
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+
+            /* High contrast mode support */
+            @media (prefers-contrast: high) {
+                .log-entry {
+                    border: 2px solid;
+                }
+
+                .form-control {
+                    border-width: 2px;
+                }
+            }
+
+            /* Focus indicators for keyboard navigation */
+            .log-entry:focus-within {
+                outline: 2px solid var(--input-focus-border);
+                outline-offset: 2px;
+            }
+
+            /* Loading and Empty States */
+            .log-empty {
+                text-align: center;
+                padding: var(--spacing-xl);
+                color: var(--text-muted);
+                font-style: italic;
+            }
+
+            .log-loading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: var(--spacing-xl);
+                color: var(--text-muted);
+            }
+
+            /* Utility Classes */
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+
+            .text-truncate {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .d-none {
+                display: none !important;
+            }
+
+            .d-block {
+                display: block !important;
+            }
+
+            .d-flex {
+                display: flex !important;
+            }
+
+            .justify-content-between {
+                justify-content: space-between !important;
+            }
+
+            .align-items-center {
+                align-items: center !important;
+            }
+           </style>
+</head> <body><div class='log-layout'>
+<header class='log-header'>
+                <h1 class='log-title'>XTinyLog - 30 09 2025</h1>
+
+                <div class='log-controls'>
+                    <div class='control-group'>
+                        <label class='control-label' for='logType'>Log Level</label>
+                        <select id='logType' class='form-control' onchange='drowLogData();' aria-label='Filter by log level'>
+                            <option value='all'>All Levels</option>
+                            <option value='info'>Info</option>
+                            <option value='warning'>Warning</option>
+                            <option value='debug'>Debug</option>
+                            <option value='error'>Error</option>
+                        </select>
+                    </div>
+
+                    <div class='control-group'>
+                        <label class='control-label' for='logSort'>Sort Order</label>
+                        <select id='logSort' class='form-control' onchange='drowLogData();' aria-label='Sort order'>
+                            <option value='desc'>Newest First</option>
+                            <option value='asc'>Oldest First</option>
+                        </select>
+                    </div>
+
+                    <div class='control-group'>
+                        <label class='control-label' for='logSearch'>Search</label>
+                        <input type='search' id='logSearch' class='form-control' placeholder='Search log messages...'
+                               oninput='debounceSearch()' aria-label='Search log messages' />
+                    </div>
+
+                    <div class='control-group'>
+                        <label class='control-label'>Actions</label>
+                        <div class='d-flex' style='gap: var(--spacing-sm);'>
+                            <button type='button' class='btn btn-secondary' onclick='expandAllEntries();' aria-label='Expand all log entries' title='Expand All (Ctrl+E)'>
+                                ▼
+                            </button>
+                            <button type='button' class='btn btn-secondary' onclick='collapseAllEntries();' aria-label='Collapse all log entries' title='Collapse All (Ctrl+Shift+E)'>
+                                ▶
+                            </button>
+                            <button type='button' class='btn btn-secondary' onclick='clearSearch();' aria-label='Clear all filters'>
+                                Clear
+                            </button>
+                            <button type='button' id='themeToggle' class='btn btn-secondary' onclick='toggleTheme();' aria-label='Toggle dark/light theme'>
+                                🌙
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class='control-group'>
+                        <label class='control-label'>Export</label>
+                        <div class='d-flex' style='gap: var(--spacing-sm);'>
+                            <button type='button' class='btn btn-secondary' onclick='exportToJSON();' aria-label='Export logs as JSON' title='Export as JSON'>
+                                JSON
+                            </button>
+                            <button type='button' class='btn btn-secondary' onclick='exportToCSV();' aria-label='Export logs as CSV' title='Export as CSV'>
+                                CSV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+<main class='log-main'>
+                <div id='container' class='log-container' role='main' aria-live='polite' aria-label='Log entries'>
+                    <div class='log-loading'>Loading log entries...</div>
+                </div>
+            </main>
+<script>
+                // Initialize the application
+                document.addEventListener('DOMContentLoaded', function() {
+                    initializeTheme();
+                    drowLogData();
+                });
+
+                // Debounced search functionality
+                let searchTimeout;
+                function debounceSearch() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(drowLogData, 300);
+                }
+
+                // Theme management
+                function initializeTheme() {
+                    const savedTheme = localStorage.getItem('xtinylog-theme') || 'light';
+                    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    const theme = savedTheme === 'auto' ? (systemPrefersDark ? 'dark' : 'light') : savedTheme;
+
+                    document.documentElement.setAttribute('data-theme', theme);
+                    updateThemeToggle(theme);
+
+                    // Listen for system theme changes
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                        if (localStorage.getItem('xtinylog-theme') === 'auto') {
+                            const newTheme = e.matches ? 'dark' : 'light';
+                            document.documentElement.setAttribute('data-theme', newTheme);
+                            updateThemeToggle(newTheme);
+                        }
+                    });
+                }
+
+                function toggleTheme() {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('xtinylog-theme', newTheme);
+                    updateThemeToggle(newTheme);
+                }
+
+                function updateThemeToggle(theme) {
+                    const toggle = document.getElementById('themeToggle');
+                    if (toggle) {
+                        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+                        toggle.setAttribute('aria-label',
+                            theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+                    }
+                }
+
+                // Main log rendering function
+                function drowLogData() {
+                    const logData = logs();
+                    const container = document.getElementById('container');
+
+                    // Clear container
+                    container.innerHTML = '';
+
+                    if (logData.length <= 0) {
+                        container.innerHTML = '<div class="log-empty">No log entries found.</div>';
+                        return;
+                    }
+
+                    const isAsc = document.getElementById('logSort').value === 'asc';
+                    const logType = document.getElementById('logType').value;
+                    const logSearch = document.getElementById('logSearch').value.trim();
+
+                    // Filter and sort data
+                    let filteredData = logData.filter(function(item) {
+                        return logType === 'all' || logType === item.type;
+                    });
+
+                    // Apply search filter
+                    if (logSearch) {
+                        const searchRegex = new RegExp(escapeRegExp(logSearch), 'i');
+                        filteredData = filteredData.filter(function(item) {
+                            return searchRegex.test(item.message);
+                        });
+                    }
+
+                    // Sort data
+                    if (isAsc) {
+                        filteredData.reverse();
+                    }
+
+                    // Render filtered data
+                    if (filteredData.length === 0) {
+                        container.innerHTML = '<div class="log-empty">No log entries match your filters.</div>';
+                        return;
+                    }
+
+                    const fragment = document.createDocumentFragment();
+                    filteredData.forEach(function(item) {
+                        const element = createLogElement(item, logSearch);
+                        if (element) {
+                            fragment.appendChild(element);
+                        }
+                    });
+
+                    container.appendChild(fragment);
+                }
+
+                // Create individual log entry element
+                function createLogElement(data, searchTerm) {
+                    const div = document.createElement('div');
+                    div.className = 'log-entry ' + data.type;
+                    div.setAttribute('role', 'article');
+                    div.setAttribute('aria-label', data.type + ' log entry');
+                    div.setAttribute('tabindex', '0');
+
+                    const header = document.createElement('div');
+                    header.className = 'log-entry-header';
+                    header.setAttribute('role', 'button');
+                    header.setAttribute('aria-expanded', 'true');
+                    header.setAttribute('tabindex', '0');
+
+                    const toggleIcon = document.createElement('span');
+                    toggleIcon.className = 'log-toggle-icon';
+                    toggleIcon.textContent = '▼';
+                    toggleIcon.setAttribute('aria-hidden', 'true');
+
+                    const timeSpan = document.createElement('span');
+                    timeSpan.className = 'log-time';
+                    timeSpan.textContent = data.time;
+
+                    const levelSpan = document.createElement('span');
+                    levelSpan.className = 'log-level';
+                    levelSpan.textContent = data.type.toUpperCase();
+
+                    const previewSpan = document.createElement('span');
+                    previewSpan.className = 'log-preview';
+                    const previewText = data.message.length > 100 ? data.message.substring(0, 100) + '...' : data.message;
+                    previewSpan.textContent = previewText;
+
+                    header.appendChild(toggleIcon);
+                    header.appendChild(timeSpan);
+                    header.appendChild(levelSpan);
+                    header.appendChild(previewSpan);
+
+                    const content = document.createElement('div');
+                    content.className = 'log-entry-content';
+
+                    const messageSpan = document.createElement('span');
+                    messageSpan.className = 'log-message';
+
+                    let messageContent = data.message;
+                    if (searchTerm) {
+                        const regex = new RegExp('(' + escapeRegExp(searchTerm) + ')', 'gi');
+                        messageContent = messageContent.replace(regex, '<span class="highlight">$1</span>');
+                    }
+
+                    messageSpan.innerHTML = messageContent;
+                    content.appendChild(messageSpan);
+
+                    div.appendChild(header);
+                    div.appendChild(content);
+
+                    // Add click handler for toggle
+                    header.addEventListener('click', function() {
+                        toggleLogEntry(div);
+                    });
+
+                    // Add keyboard handler
+                    header.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleLogEntry(div);
+                        }
+                    });
+
+                    return div;
+                }
+
+                // Toggle log entry expanded/collapsed state
+                function toggleLogEntry(entryElement) {
+                    const header = entryElement.querySelector('.log-entry-header');
+                    const content = entryElement.querySelector('.log-entry-content');
+                    const icon = entryElement.querySelector('.log-toggle-icon');
+
+                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+                    if (isExpanded) {
+                        // Collapse
+                        header.setAttribute('aria-expanded', 'false');
+                        content.style.display = 'none';
+                        icon.textContent = '▶';
+                        entryElement.classList.add('collapsed');
+                    } else {
+                        // Expand
+                        header.setAttribute('aria-expanded', 'true');
+                        content.style.display = 'block';
+                        icon.textContent = '▼';
+                        entryElement.classList.remove('collapsed');
+                    }
+                }
+
+                // Utility function to escape regex special characters
+                function escapeRegExp(string) {
+                    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                }
+
+                // Clear all filters and search
+                function clearSearch() {
+                    document.getElementById('logSearch').value = '';
+                    document.getElementById('logSort').value = 'desc';
+                    document.getElementById('logType').value = 'all';
+                    drowLogData();
+                }
+
+                // Expand/collapse all log entries
+                function expandAllEntries() {
+                    const entries = document.querySelectorAll('.log-entry');
+                    entries.forEach(function(entry) {
+                        const header = entry.querySelector('.log-entry-header');
+                        const content = entry.querySelector('.log-entry-content');
+                        const icon = entry.querySelector('.log-toggle-icon');
+
+                        header.setAttribute('aria-expanded', 'true');
+                        content.style.display = 'block';
+                        icon.textContent = '▼';
+                        entry.classList.remove('collapsed');
+                    });
+                }
+
+                function collapseAllEntries() {
+                    const entries = document.querySelectorAll('.log-entry');
+                    entries.forEach(function(entry) {
+                        const header = entry.querySelector('.log-entry-header');
+                        const content = entry.querySelector('.log-entry-content');
+                        const icon = entry.querySelector('.log-toggle-icon');
+
+                        header.setAttribute('aria-expanded', 'false');
+                        content.style.display = 'none';
+                        icon.textContent = '▶';
+                        entry.classList.add('collapsed');
+                    });
+                }
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', function(e) {
+                    // Ctrl/Cmd + K to focus search
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                        e.preventDefault();
+                        document.getElementById('logSearch').focus();
+                    }
+
+                    // Escape to clear search when focused
+                    if (e.key === 'Escape' && document.activeElement.id === 'logSearch') {
+                        clearSearch();
+                    }
+
+                    // Ctrl/Cmd + Shift + L to toggle theme
+                    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
+                        e.preventDefault();
+                        toggleTheme();
+                    }
+
+                    // Ctrl/Cmd + E to expand all entries
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+                        e.preventDefault();
+                        expandAllEntries();
+                    }
+
+                    // Ctrl/Cmd + Shift + E to collapse all entries
+                    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'E') {
+                        e.preventDefault();
+                        collapseAllEntries();
+                    }
+
+                    // Ctrl/Cmd + Shift + J to export as JSON
+                    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'J') {
+                        e.preventDefault();
+                        exportToJSON();
+                    }
+
+                    // Ctrl/Cmd + Shift + C to export as CSV
+                    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+                        e.preventDefault();
+                        exportToCSV();
+                    }
+                });
+
+                // Export functionality
+                function getFilteredLogData() {
+                    const logData = logs();
+                    const logType = document.getElementById('logType').value;
+                    const logSearch = document.getElementById('logSearch').value.trim();
+
+                    // Filter data
+                    let filteredData = logData.filter(function(item) {
+                        return logType === 'all' || logType === item.type;
+                    });
+
+                    // Apply search filter
+                    if (logSearch) {
+                        const searchRegex = new RegExp(escapeRegExp(logSearch), 'i');
+                        filteredData = filteredData.filter(function(item) {
+                            return searchRegex.test(item.message);
+                        });
+                    }
+
+                    return filteredData;
+                }
+
+                function exportToJSON() {
+                    try {
+                        const data = getFilteredLogData();
+                        const jsonString = JSON.stringify(data, null, 2);
+                        const blob = new Blob([jsonString], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'xtinylog-export-' + new Date().toISOString().slice(0, 19).replace(/:/g, '-') + '.json';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+
+                        console.log('Exported ' + data.length + ' log entries to JSON');
+                    } catch (error) {
+                        console.error('Error exporting to JSON:', error);
+                        alert('Error exporting to JSON: ' + error.message);
+                    }
+                }
+
+                function exportToCSV() {
+                    try {
+                        const data = getFilteredLogData();
+
+                        // CSV headers
+                        const headers = ['Timestamp', 'Level', 'Message'];
+
+                        // Convert data to CSV format
+                        const csvRows = [headers.join(',')];
+
+                        data.forEach(function(item) {
+                            const row = [
+                                '"' + (item.time || '').replace(/"/, '""') + '"',
+                                '"' + (item.type || '').replace(/"/, '""') + '"',
+                                '"' + (item.message || '').replace(/"/, '""') + '"'
+                            ];
+                            csvRows.push(row.join(','));
+                        });
+
+                        const csvString = csvRows.join('\\n');
+                        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+                        const url = URL.createObjectURL(blob);
+
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'xtinylog-export-' + new Date().toISOString().slice(0, 19).replace(/:/g, '-') + '.csv';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+
+                        console.log('Exported ' + data.length + ' log entries to CSV');
+                    } catch (error) {
+                        console.error('Error exporting to CSV:', error);
+                        alert('Error exporting to CSV: ' + error.message);
+                    }
+                });
+
+                // Data source function
+                function logs() {
+                    return [
+                            {
+                       
+
+                            'type': 'info',
+                            'time': '20:23:14.0194201',
+                            'message': 'XTinyLogSink initialized successfully. LogDirectory: C:\Workspace\06 MyRepositories\XTinyLog\TestLogs, ApplicationName: PackageTest'
+                        }
+
+                   ,{
+                            'type': 'info',
+                            'time': '20:23:14.0220776',
+                            'message': 'Custom configuration test - User &quot;user123&quot; logged in from &quot;192.168.1.100&quot;
+Properties: UserId=&quot;user123&quot;, IPAddress=&quot;192.168.1.100&quot;'
+                        }
+
+                   ,{
+                            'type': 'info',
+                            'time': '20:23:14.0245165',
+                            'message': 'Processing order { OrderId: 12345, CustomerId: &quot;CUST001&quot;, Amount: 99.99 } for customer &quot;CUST001&quot;
+Properties: Order={ OrderId: 12345, CustomerId: &quot;CUST001&quot;, Amount: 99.99 }, CustomerId=&quot;CUST001&quot;'
+                        }
+
+                   ,{
+                            'type': 'error',
+                            'time': '20:23:14.0493652',
+                            'message': 'Test exception occurred while processing order 12345
+Exception:
+InvalidOperationException: Test exception for logging
+Stack Trace:
+   at Program.&lt;Main&gt;$(String[] args) in C:\Workspace\06 MyRepositories\XTinyLog\PackageTest\Program.cs:line 39
+
+Properties: OrderId=12345'
+                        }
+
+                      ]; } </script> </div> </body></html>
